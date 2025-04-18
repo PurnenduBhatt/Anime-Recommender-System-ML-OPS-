@@ -1,0 +1,93 @@
+2025-04-18 18:35:24,495 - INFO - Succesfully read the YAML file
+2025-04-18 18:35:24,495 - INFO - Data Ingestion Started....
+2025-04-18 18:35:24,495 - INFO - Starting Data Ingestion Process....
+2025-04-18 18:35:27,499 - WARNING - Compute Engine Metadata server unavailable on attempt 1 of 3. Reason: timed out
+2025-04-18 18:35:31,455 - WARNING - Compute Engine Metadata server unavailable on attempt 2 of 3. Reason: timed out
+2025-04-18 18:35:36,428 - WARNING - Compute Engine Metadata server unavailable on attempt 3 of 3. Reason: timed out
+2025-04-18 18:35:36,428 - WARNING - Authentication failed using Compute Engine authentication due to unavailable metadata server.
+2025-04-18 18:35:36,428 - ERROR - Error while downloading data from GCP
+2025-04-18 18:35:36,428 - ERROR - CustomException : Error in /home/purnendu/Desktop/spe/Mlopsproject/src/data_ingestion.py , line 24 : Failed to download data
+2025-04-18 18:35:36,429 - INFO - Data Ingestion DONE...
+2025-04-18 19:06:00,033 - INFO - Succesfully read the YAML file
+2025-04-18 19:06:00,034 - INFO - Data Ingestion Started....
+2025-04-18 19:06:00,034 - INFO - Starting Data Ingestion Process....
+2025-04-18 19:06:03,038 - WARNING - Compute Engine Metadata server unavailable on attempt 1 of 3. Reason: timed out
+2025-04-18 19:06:06,992 - WARNING - Compute Engine Metadata server unavailable on attempt 2 of 3. Reason: timed out
+2025-04-18 19:06:11,943 - WARNING - Compute Engine Metadata server unavailable on attempt 3 of 3. Reason: timed out
+2025-04-18 19:06:11,943 - WARNING - Authentication failed using Compute Engine authentication due to unavailable metadata server.
+2025-04-18 19:06:11,944 - ERROR - Error while downloading data from GCP
+2025-04-18 19:06:11,944 - ERROR - CustomException : Error in /home/purnendu/Desktop/spe/Mlopsproject/src/data_ingestion.py , line 24 : Failed to download data
+2025-04-18 19:06:11,944 - INFO - Data Ingestion DONE...
+2025-04-18 19:13:15,895 - INFO - Succesfully read the YAML file
+2025-04-18 19:13:15,896 - INFO - Data Ingestion Started....
+2025-04-18 19:13:15,896 - INFO - Starting Data Ingestion Process....
+2025-04-18 19:13:19,200 - INFO - Downloading Smaller Files ie anime and anime_with synopsis
+2025-04-18 19:13:22,134 - INFO - Downloading Smaller Files ie anime and anime_with synopsis
+2025-04-18 19:17:52,925 - INFO - Large file detected Only downloading 5M rows
+2025-04-18 19:17:52,926 - INFO - Data Ingestion Completed...
+2025-04-18 19:17:52,926 - INFO - Data Ingestion DONE...
+2025-04-18 21:40:59,090 - INFO - DataProcessing Intialized
+2025-04-18 21:40:59,831 - INFO - Data loaded sucesfully for Data Processing
+2025-04-18 21:41:00,090 - INFO - Filtered users sucesfully...
+2025-04-18 21:41:00,882 - INFO - Scalind done for Processing 
+2025-04-18 21:41:00,971 - INFO - Encoding done for Users and Anime
+2025-04-18 21:41:01,692 - INFO - Data splitted sucesfullyy
+2025-04-18 21:41:01,701 - INFO - user2user_encoded saved sucesfully in processed directory
+2025-04-18 21:41:01,710 - INFO - user2user_decoded saved sucesfully in processed directory
+2025-04-18 21:41:01,745 - INFO - anim2anime_encoded saved sucesfully in processed directory
+2025-04-18 21:41:01,780 - INFO - anim2anime_decoded saved sucesfully in processed directory
+2025-04-18 21:41:04,759 - INFO - ALl the training testing data as well as rating_df is saved now..
+2025-04-18 21:41:10,373 - INFO - DF AND SYNOPSIS_Df saved sucesfullyy...
+2025-04-18 21:41:10,375 - INFO - Data Processing Pipeline Run sucesfully .... Congrats
+2025-04-18 21:58:21,190 - INFO - Model Training & COMET ML initialized..
+2025-04-18 21:58:21,472 - INFO - Data loaded sucesfully for Model Trainig
+2025-04-18 21:58:21,495 - INFO - Succesfully read the YAML file
+2025-04-18 21:58:21,495 - INFO - Loaded configuration from config.yaml
+2025-04-18 21:58:22,392 - ERROR - Error occurfed during model architecture {{function_node __wrapped__FloorMod_device_/job:localhost/replica:0/task:0/device:GPU:0}} 'cuLaunchKernel(function, gridX, gridY, gridZ, blockX, blockY, blockZ, 0, reinterpret_cast<CUstream>(stream), params, nullptr)' failed with 'CUDA_ERROR_INVALID_HANDLE' [Op:FloorMod] name: 
+2025-04-18 21:58:22,392 - ERROR - Error in /home/purnendu/Desktop/spe/Mlopsproject/src/base_model.py , line 23 : Failed to create model
+2025-04-18 22:01:44,470 - INFO - Model Training & COMET ML initialized..
+2025-04-18 22:01:44,622 - INFO - Data loaded sucesfully for Model Trainig
+2025-04-18 22:01:44,645 - INFO - Succesfully read the YAML file
+2025-04-18 22:01:44,645 - INFO - Loaded configuration from config.yaml
+2025-04-18 22:01:44,717 - INFO - Model created sucesfully....
+2025-04-18 22:02:34,927 - INFO - Model training Completedd.....
+2025-04-18 22:02:34,927 - WARNING - You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+2025-04-18 22:02:34,978 - INFO - Model saved to artifacts/model/model.h5
+2025-04-18 22:02:34,980 - INFO - Extracting weights for user_embedding
+2025-04-18 22:02:34,985 - INFO - Extracting weights for anime_embedding
+2025-04-18 22:02:35,070 - INFO - User and Anime weights saved sucesfully....
+2025-04-18 22:27:31,170 - INFO - Model Training & COMET ML initialized..
+2025-04-18 22:27:31,345 - INFO - Data loaded sucesfully for Model Trainig
+2025-04-18 22:27:31,368 - INFO - Succesfully read the YAML file
+2025-04-18 22:27:31,369 - INFO - Loaded configuration from config.yaml
+2025-04-18 22:27:31,446 - INFO - Model created sucesfully....
+2025-04-18 22:31:25,049 - INFO - Model training Completedd.....
+2025-04-18 22:31:25,051 - WARNING - You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+2025-04-18 22:31:25,112 - INFO - Model saved to artifacts/model/model.h5
+2025-04-18 22:31:25,113 - INFO - Extracting weights for user_embedding
+2025-04-18 22:31:25,116 - INFO - Extracting weights for anime_embedding
+2025-04-18 22:31:25,183 - INFO - User and Anime weights saved sucesfully....
+2025-04-18 23:03:10,172 - INFO - DataProcessing Intialized
+2025-04-18 23:03:10,738 - INFO - Data loaded sucesfully for Data Processing
+2025-04-18 23:03:10,851 - INFO - Filtered users sucesfully...
+2025-04-18 23:03:11,574 - INFO - Scalind done for Processing 
+2025-04-18 23:03:11,651 - INFO - Encoding done for Users and Anime
+2025-04-18 23:03:12,106 - INFO - Data splitted sucesfullyy
+2025-04-18 23:03:12,115 - INFO - user2user_encoded saved sucesfully in processed directory
+2025-04-18 23:03:12,123 - INFO - user2user_decoded saved sucesfully in processed directory
+2025-04-18 23:03:12,156 - INFO - anim2anime_encoded saved sucesfully in processed directory
+2025-04-18 23:03:12,187 - INFO - anim2anime_decoded saved sucesfully in processed directory
+2025-04-18 23:03:15,020 - INFO - ALl the training testing data as well as rating_df is saved now..
+2025-04-18 23:03:20,452 - INFO - DF AND SYNOPSIS_Df saved sucesfullyy...
+2025-04-18 23:03:20,454 - INFO - Data Processing Pipeline Run sucesfully .... Congrats
+2025-04-18 23:03:26,661 - INFO - Model Training & COMET ML initialized..
+2025-04-18 23:03:26,747 - INFO - Data loaded sucesfully for Model Trainig
+2025-04-18 23:03:26,769 - INFO - Succesfully read the YAML file
+2025-04-18 23:03:26,769 - INFO - Loaded configuration from config.yaml
+2025-04-18 23:03:26,843 - INFO - Model created sucesfully....
+2025-04-18 23:04:13,537 - INFO - Model training Completedd.....
+2025-04-18 23:04:13,546 - WARNING - You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+2025-04-18 23:04:13,595 - INFO - Model saved to artifacts/model/model.h5
+2025-04-18 23:04:13,596 - INFO - Extracting weights for user_embedding
+2025-04-18 23:04:13,600 - INFO - Extracting weights for anime_embedding
+2025-04-18 23:04:13,655 - INFO - User and Anime weights saved sucesfully....
