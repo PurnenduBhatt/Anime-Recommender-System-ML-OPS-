@@ -36,4 +36,4 @@ WEIGHTS_DIR = "artifacts/weights"
 MODEL_PATH = os.path.join(MODEL_DIR,"model.h5")
 ANIME_WEIGHTS_PATH = os.path.join(WEIGHTS_DIR,"anime_weights.pkl")
 USER_WEIGHTS_PATH = os.path.join(WEIGHTS_DIR,"user_weights.pkl")
-CHECKPOINT_FILE_PATH = "artifacts/model_checkpoint/weights.weights.h5"
+CHECKPOINT_FILE_PATH = "artifacts/model_checkpoint/weights.weights.h5"        

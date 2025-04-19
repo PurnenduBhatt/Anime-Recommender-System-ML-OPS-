@@ -141,6 +141,7 @@ class DataProcessor:
             df["anime_id"] = df["MAL_ID"]
             df["eng_version"] = df["English name"]
             df["eng_version"] = df.anime_id.apply(lambda x:getAnimeName(x))
+            df["eng_version"] = df["eng_version"].str.lower()
 
             df.sort_values(by=["Score"],
                     inplace=True,
