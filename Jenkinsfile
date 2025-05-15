@@ -10,7 +10,8 @@ pipeline {
         DOCKER_TAG = "${env.BUILD_NUMBER}"
         VAULT_ADDR = "http://vault:8200"
         VAULT_TOKEN = "myroot"
-        PATH = "/opt/homebrew/bin:/usr/bin:$PATH"  // Add paths for git
+        PATH = "/opt/homebrew/bin:/usr/bin:$PATH"
+        PYTHON_VERSION = "3.12"  // Use Python 3.12 for TensorFlow compatibility
     }
     
     parameters {
@@ -36,9 +37,9 @@ pipeline {
             steps {
                 script {
                     echo 'Cloning from Github...'
-                    sh 'echo $PATH'  // Debug: Print PATH to confirm /opt/homebrew/bin is included
-                    sh 'which git'   // Debug: Confirm git location
-                    sh 'git --version'  // Debug: Confirm git version
+                    sh 'echo $PATH'
+                    sh 'which git'
+                    sh 'git --version'
                     checkout scmGit(branches: [[name: '*/main']], 
                              extensions: [], 
                              userRemoteConfigs: [[credentialsId: 'github-token', 
@@ -53,10 +54,11 @@ pipeline {
                 script {
                     echo 'Making a virtual environment...'
                     sh '''
-                    python3 -m venv ${VENV_DIR}
+                    python${PYTHON_VERSION} -m venv ${VENV_DIR}
                     . ${VENV_DIR}/bin/activate
                     pip install --upgrade pip
                     pip install -e .
+                    pip install tensorflow==2.16.2  # Pin TensorFlow to a compatible version
                     pip install dvc pytest pytest-cov flake8
                     '''
                     echo 'Virtual environment created and dependencies installed'
