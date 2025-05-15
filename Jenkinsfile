@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             image 'python:3.11'  // Changed from 3.12-slim to 3.11 full image
-            label 'docker'  // Specify the node label here
+            // Removed the 'docker' label requirement
             args '-u root -v /var/run/docker.sock:/var/run/docker.sock'
         }
     }
