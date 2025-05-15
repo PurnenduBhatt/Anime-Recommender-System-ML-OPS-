@@ -8,7 +8,6 @@ pipeline {
         DOCKER_TAG = "${env.BUILD_NUMBER}"
         VAULT_ADDR = "http://vault:8200"
         VAULT_TOKEN = "myroot"
-        // Ensure Docker Desktop and other binaries are in PATH
         PATH = "/Applications/Docker.app/Contents/Resources/bin:/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin:${env.PATH}"
     }
 
@@ -44,7 +43,6 @@ pipeline {
                         exit 1
                     fi
 
-                    # Check if Docker daemon is responsive
                     docker info > /dev/null 2>&1
                     if [ $? -ne 0 ]; then
                         echo "❌ Docker is installed but not responsive. Is Docker Desktop running?"
@@ -75,7 +73,12 @@ pipeline {
                 script {
                     echo 'Creating virtual environment...'
                     sh '''
-                    python3 -m venv ${VENV_DIR}
+                    if ! command -v python3.10 &> /dev/null; then
+                        echo "❌ Python 3.10 is not installed or not in PATH."
+                        exit 1
+                    fi
+
+                    python3.10 -m venv ${VENV_DIR}
                     . ${VENV_DIR}/bin/activate
                     pip install --upgrade pip
                     pip install -e .
