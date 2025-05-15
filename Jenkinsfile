@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'python:3.12-slim'
+            image 'python:3.11'  // Changed from 3.12-slim to 3.11 full image
             label 'docker'  // Specify the node label here
             args '-u root -v /var/run/docker.sock:/var/run/docker.sock'
         }
@@ -17,7 +17,7 @@ pipeline {
         VAULT_ADDR = "http://vault:8200"
         VAULT_TOKEN = "myroot"
         PATH = "/opt/homebrew/bin:/usr/bin:/usr/local/bin:$PATH"
-        PYTHON_VERSION = "3.12"
+        PYTHON_VERSION = "3.11"  // Updated to match Docker image version
     }
     
     parameters {
