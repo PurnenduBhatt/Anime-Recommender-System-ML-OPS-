@@ -6,10 +6,11 @@ pipeline {
         GCP_PROJECT = 'academic-volt-456808-r1'
         GCLOUD_PATH = "/var/jenkins_home/google-cloud-sdk/bin"
         KUBECTL_AUTH_PLUGIN = "/usr/lib/google-cloud-sdk/bin"
-        DOCKER_IMAGE = "kunal2221/mlops-app"  // Updated to match your deployed image
+        DOCKER_IMAGE = "kunal2221/mlops-app"
         DOCKER_TAG = "${env.BUILD_NUMBER}"
         VAULT_ADDR = "http://vault:8200"
-        VAULT_TOKEN = "myroot"  // Token used in docker-compose.yml and application.py
+        VAULT_TOKEN = "myroot"
+        PATH = "/opt/homebrew/bin:/usr/bin:$PATH"  // Add paths for git
     }
     
     parameters {
@@ -35,6 +36,9 @@ pipeline {
             steps {
                 script {
                     echo 'Cloning from Github...'
+                    sh 'echo $PATH'  // Debug: Print PATH to confirm /opt/homebrew/bin is included
+                    sh 'which git'   // Debug: Confirm git location
+                    sh 'git --version'  // Debug: Confirm git version
                     checkout scmGit(branches: [[name: '*/main']], 
                              extensions: [], 
                              userRemoteConfigs: [[credentialsId: 'github-token', 
@@ -110,15 +114,10 @@ pipeline {
                 script {
                     echo 'Fetching credentials from Vault...'
                     sh '''
-                    # Ensure vault CLI is available (assumes vault CLI is installed on Jenkins agent)
                     export VAULT_ADDR=${VAULT_ADDR}
                     vault login ${VAULT_TOKEN}
-
-                    # Fetch Elasticsearch credentials
                     ELASTIC_USER=$(vault kv get -field=user secret/ml-app/elasticsearch)
                     ELASTIC_PASSWORD=$(vault kv get -field=password secret/ml-app/elasticsearch)
-
-                    # Export credentials as environment variables for later stages
                     echo "ELASTIC_USER=${ELASTIC_USER}" >> vault.env
                     echo "ELASTIC_PASSWORD=${ELASTIC_PASSWORD}" >> vault.env
                     '''
@@ -132,7 +131,6 @@ pipeline {
                 script {
                     echo 'Building and pushing Docker image to Docker Hub...'
                     sh '''
-                    # Login to Docker Hub (assumes credentials are configured in Jenkins)
                     docker build -t ${DOCKER_IMAGE}:latest -t ${DOCKER_IMAGE}:${DOCKER_TAG} .
                     docker push ${DOCKER_IMAGE}:latest
                     docker push ${DOCKER_IMAGE}:${DOCKER_TAG}
@@ -152,8 +150,6 @@ pipeline {
                         gcloud auth activate-service-account --key-file=${GOOGLE_APPLICATION_CREDENTIALS}
                         gcloud config set project ${GCP_PROJECT}
                         gcloud container clusters get-credentials ml-app-cluster --region us-central1
-                        
-                        # Update deployment image using kubectl set image
                         kubectl set image deployment/ml-app ml-app-container=${DOCKER_IMAGE}:${DOCKER_TAG}
                         kubectl rollout status deployment/ml-app
                         '''
@@ -167,7 +163,6 @@ pipeline {
             steps {
                 script {
                     echo 'Running Ansible playbooks for configuration management...'
-                    // Load Vault credentials as environment variables
                     def vaultEnv = readFile('vault.env').trim().split('\n')
                     vaultEnv.each { envVar ->
                         def (key, value) = envVar.split('=')
@@ -183,7 +178,6 @@ pipeline {
                         echo 'Ansible configuration completed successfully'
                     } catch (Exception e) {
                         echo "Ansible configuration failed: ${e.getMessage()}"
-                        // Continue pipeline even if Ansible fails (e.g., ELK setup issue shouldn't block deployment)
                         currentBuild.result = 'UNSTABLE'
                     }
                 }
@@ -206,8 +200,6 @@ pipeline {
                         gcloud auth activate-service-account --key-file=${GOOGLE_APPLICATION_CREDENTIALS}
                         gcloud config set project ${GCP_PROJECT}
                         gcloud container clusters get-credentials ml-app-prod-cluster --region us-central1
-                        
-                        # Apply production configuration
                         kubectl apply -f k8s/production/deployment.yaml
                         kubectl set image deployment/ml-app ml-app-container=${DOCKER_IMAGE}:${DOCKER_TAG}
                         kubectl rollout status deployment/ml-app
