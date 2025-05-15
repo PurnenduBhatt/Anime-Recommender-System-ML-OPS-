@@ -1,29 +1,7 @@
-output.elasticsearch:
-  hosts: ["elasticsearch:9200"]
-  username: '${ELASTICSEARCH_USERNAME:elastic}'
-  password: '${ELASTICSEARCH_PASSWORD:changeme}'
-
 filebeat.inputs:
 - type: log
   enabled: true
   paths:
     - /app/logs/*.log
-  json.keys_under_root: true
-  json.add_error_key: true
-  fields:
-    application: ml-app
-    environment: ${ENVIRONMENT:production}
-
-processors:
-  - add_host_metadata:
-      when.not.contains.tags: forwarded
-  - add_docker_metadata: ~
-  - add_kubernetes_metadata: ~
-
-logging.level: info
-logging.to_files: true
-logging.files:
-  path: /var/log/filebeat
-  name: filebeat
-  keepfiles: 7
-  permissions: 0644
+output.logstash:
+  hosts: ["logstash:5044"]

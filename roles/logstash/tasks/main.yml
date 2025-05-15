@@ -1,0 +1,17 @@
+---
+- name: Ensure Logstash is running
+  docker_container:
+    name: logstash
+    image: docker.elastic.co/logstash/logstash:7.17.0
+    state: started
+    ports:
+      - "5044:5044"
+      - "9600:9600"
+    environment:
+      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+    volumes:
+      - ./config/logstash/pipeline:/usr/share/logstash/pipeline
+      - ./config/logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
+    depends_on:
+      - elasticsearch
+  when: ansible_host == 'localhost'

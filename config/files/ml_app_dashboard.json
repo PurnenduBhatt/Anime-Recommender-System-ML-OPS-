@@ -1,0 +1,13 @@
+{
+    "objects": [
+      {
+        "id": "ml-app-dashboard",
+        "type": "dashboard",
+        "attributes": {
+          "title": "ML App Dashboard",
+          "description": "Dashboard for ML App logs",
+          "panelsJSON": "[]"
+        }
+      }
+    ]
+  }

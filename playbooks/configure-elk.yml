@@ -1,0 +1,93 @@
+---
+- name: Configure ELK Stack and Vault for ML App
+  hosts: elk_servers
+  become: true
+  vars_files:
+    - config/vars/elk_vars.yml
+  vars:
+    vault_addr: "http://localhost:8200"
+    vault_token: "{{ lookup('env', 'VAULT_TOKEN') | default('myroot', true) }}"
+
+  pre_tasks:
+    - name: Fetch Elasticsearch credentials from Vault
+      ansible.builtin.set_fact:
+        elastic_user: "{{ (lookup('hashi_vault', 'secret=secret/ml-app/elasticsearch token={{ vault_token }} url={{ vault_addr }}', errors='warn') | default({})).user | default('elastic') }}"
+        elastic_password: "{{ (lookup('hashi_vault', 'secret=secret/ml-app/elasticsearch token={{ vault_token }} url={{ vault_addr }}', errors='warn') | default({})).password | default('changeme') }}"
+      delegate_to: localhost
+      tags: [vault]
+
+  roles:
+    - role: vault
+      tags: [vault]
+    - role: elasticsearch
+      tags: [elasticsearch]
+    - role: logstash
+      tags: [logstash]
+    - role: kibana
+      tags: [kibana]
+
+  tasks:
+    - name: Create Kibana index patterns
+      uri:
+        url: "http://{{ kibana_host }}:{{ kibana_port }}/api/saved_objects/index-pattern/ml-app-*"
+        method: POST
+        body_format: json
+        body:
+          attributes:
+            title: "ml-app-*"
+            timeFieldName: "@timestamp"
+        status_code: 200,201
+        user: "{{ elastic_user }}"
+        password: "{{ elastic_password }}"
+      delegate_to: localhost
+      tags: [kibana_setup]
+
+    - name: Import Kibana Dashboards
+      uri:
+        url: "http://{{ kibana_host }}:{{ kibana_port }}/api/kibana/dashboards/import"
+        method: POST
+        body_format: json
+        body: "{{ lookup('file', 'config/files/ml_app_dashboard.json') }}"
+        status_code: 200,201
+        user: "{{ elastic_user }}"
+        password: "{{ elastic_password }}"
+      delegate_to: localhost
+      tags: [kibana_setup]
+
+    - name: Configure Logstash pipeline for ML app
+      template:
+        src: config/templates/ml-app-pipeline.conf.j2
+        dest: /etc/logstash/conf.d/ml-app-pipeline.conf
+        owner: logstash
+        group: logstash
+        mode: 0644
+      notify: restart logstash
+      tags: [logstash_config]
+
+    - name: Setup log rotation
+      template:
+        src: config/templates/logrotate-elk.j2
+        dest: /etc/logrotate.d/elk
+        owner: root
+        group: root
+        mode: 0644
+      tags: [maintenance]
+
+  handlers:
+    - name: restart elasticsearch
+      systemd:
+        name: elasticsearch
+        state: restarted
+        enabled: yes
+
+    - name: restart logstash
+      systemd:
+        name: logstash
+        state: restarted
+        enabled: yes
+
+    - name: restart kibana
+      systemd:
+        name: kibana
+        state: restarted
+        enabled: yes

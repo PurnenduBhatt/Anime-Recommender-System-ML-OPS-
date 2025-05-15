@@ -1,0 +1,22 @@
+---
+- name: Ensure Vault is running
+  docker_container:
+    name: vault
+    image: vault:1.12.1
+    state: started
+    ports:
+      - "8200:8200"
+    env:
+      VAULT_DEV_ROOT_TOKEN_ID: "{{ vault_token }}"
+      VAULT_DEV_LISTEN_ADDRESS: "0.0.0.0:8200"
+    cap_add:
+      - IPC_LOCK
+  when: ansible_host == 'localhost'
+
+- name: Enable kv secrets engine
+  command: vault secrets enable -path=secret kv
+  environment:
+    VAULT_ADDR: "{{ vault_addr }}"
+    VAULT_TOKEN: "{{ vault_token }}"
+  delegate_to: localhost
+  run_once: true

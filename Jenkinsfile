@@ -6,9 +6,10 @@ pipeline {
         GCP_PROJECT = 'academic-volt-456808-r1'
         GCLOUD_PATH = "/var/jenkins_home/google-cloud-sdk/bin"
         KUBECTL_AUTH_PLUGIN = "/usr/lib/google-cloud-sdk/bin"
-        DOCKER_IMAGE = "gcr.io/${GCP_PROJECT}/ml-project"
+        DOCKER_IMAGE = "kunal2221/mlops-app"  // Updated to match your deployed image
         DOCKER_TAG = "${env.BUILD_NUMBER}"
         VAULT_ADDR = "http://vault:8200"
+        VAULT_TOKEN = "myroot"  // Token used in docker-compose.yml and application.py
     }
     
     parameters {
@@ -26,6 +27,7 @@ pipeline {
         stage("Clean Workspace") {
             steps {
                 cleanWs()
+                echo 'Workspace cleaned successfully'
             }
         }
         
@@ -37,6 +39,7 @@ pipeline {
                              extensions: [], 
                              userRemoteConfigs: [[credentialsId: 'github-token', 
                              url: 'https://github.com/PurnenduBhatt/Anime-Recommender-System-ML-OPS-.git']])
+                    echo 'Repository cloned successfully'
                 }
             }
         }
@@ -52,6 +55,7 @@ pipeline {
                     pip install -e .
                     pip install dvc pytest pytest-cov flake8
                     '''
+                    echo 'Virtual environment created and dependencies installed'
                 }
             }
         }
@@ -64,6 +68,7 @@ pipeline {
                     . ${VENV_DIR}/bin/activate
                     flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
                     '''
+                    echo 'Static code analysis completed'
                 }
             }
         }
@@ -72,11 +77,12 @@ pipeline {
             steps {
                 withCredentials([file(credentialsId:'gcp-key', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
                     script {
-                        echo 'DVC Pull....'
+                        echo 'Pulling data with DVC...'
                         sh '''
                         . ${VENV_DIR}/bin/activate
                         dvc pull
                         '''
+                        echo 'DVC pull completed'
                     }
                 }
             }
@@ -93,30 +99,45 @@ pipeline {
                     . ${VENV_DIR}/bin/activate
                     pytest --cov=. --cov-report=xml:coverage.xml
                     '''
+                    echo 'Tests completed successfully'
                 }
                 publishCoverage adapters: [istanbulCoberturaAdapter('coverage.xml')]
             }
         }
         
-        stage('Build and Push Image to GCR') {
+        stage('Fetch Credentials from Vault') {
             steps {
-                withCredentials([file(credentialsId:'gcp-key', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
-                    script {
-                        echo 'Build and Push Image to GCR'
-                        sh '''
-                        export PATH=$PATH:${GCLOUD_PATH}
-                        gcloud auth activate-service-account --key-file=${GOOGLE_APPLICATION_CREDENTIALS}
-                        gcloud config set project ${GCP_PROJECT}
-                        gcloud auth configure-docker --quiet
-                        
-                        # Build with both latest and versioned tags
-                        docker build -t ${DOCKER_IMAGE}:latest -t ${DOCKER_IMAGE}:${DOCKER_TAG} .
-                        
-                        # Push both tags
-                        docker push ${DOCKER_IMAGE}:latest
-                        docker push ${DOCKER_IMAGE}:${DOCKER_TAG}
-                        '''
-                    }
+                script {
+                    echo 'Fetching credentials from Vault...'
+                    sh '''
+                    # Ensure vault CLI is available (assumes vault CLI is installed on Jenkins agent)
+                    export VAULT_ADDR=${VAULT_ADDR}
+                    vault login ${VAULT_TOKEN}
+
+                    # Fetch Elasticsearch credentials
+                    ELASTIC_USER=$(vault kv get -field=user secret/ml-app/elasticsearch)
+                    ELASTIC_PASSWORD=$(vault kv get -field=password secret/ml-app/elasticsearch)
+
+                    # Export credentials as environment variables for later stages
+                    echo "ELASTIC_USER=${ELASTIC_USER}" >> vault.env
+                    echo "ELASTIC_PASSWORD=${ELASTIC_PASSWORD}" >> vault.env
+                    '''
+                    echo 'Credentials fetched from Vault successfully'
+                }
+            }
+        }
+        
+        stage('Build and Push Image to Docker Hub') {
+            steps {
+                script {
+                    echo 'Building and pushing Docker image to Docker Hub...'
+                    sh '''
+                    # Login to Docker Hub (assumes credentials are configured in Jenkins)
+                    docker build -t ${DOCKER_IMAGE}:latest -t ${DOCKER_IMAGE}:${DOCKER_TAG} .
+                    docker push ${DOCKER_IMAGE}:latest
+                    docker push ${DOCKER_IMAGE}:${DOCKER_TAG}
+                    '''
+                    echo 'Docker image built and pushed successfully'
                 }
             }
         }
@@ -125,7 +146,7 @@ pipeline {
             steps {
                 withCredentials([file(credentialsId:'gcp-key', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
                     script {
-                        echo 'Deploying to Development Kubernetes Cluster'
+                        echo 'Deploying to Development Kubernetes Cluster...'
                         sh '''
                         export PATH=$PATH:${GCLOUD_PATH}:${KUBECTL_AUTH_PLUGIN}
                         gcloud auth activate-service-account --key-file=${GOOGLE_APPLICATION_CREDENTIALS}
@@ -136,6 +157,7 @@ pipeline {
                         kubectl set image deployment/ml-app ml-app-container=${DOCKER_IMAGE}:${DOCKER_TAG}
                         kubectl rollout status deployment/ml-app
                         '''
+                        echo 'Deployment to Development completed'
                     }
                 }
             }
@@ -144,11 +166,26 @@ pipeline {
         stage('Run Ansible Configuration') {
             steps {
                 script {
-                    echo 'Running Ansible playbooks for configuration management'
-                    sh '''
-                    export ANSIBLE_HOST_KEY_CHECKING=False
-                    ansible-playbook -i inventory/gcp.yml playbooks/configure-elk.yml
-                    '''
+                    echo 'Running Ansible playbooks for configuration management...'
+                    // Load Vault credentials as environment variables
+                    def vaultEnv = readFile('vault.env').trim().split('\n')
+                    vaultEnv.each { envVar ->
+                        def (key, value) = envVar.split('=')
+                        env."${key}" = value
+                    }
+                    try {
+                        sh '''
+                        export ANSIBLE_HOST_KEY_CHECKING=False
+                        ansible-playbook -i inventory/localhost.yml playbooks/configure-elk.yml \
+                            -e "elastic_user=${ELASTIC_USER}" \
+                            -e "elastic_password=${ELASTIC_PASSWORD}"
+                        '''
+                        echo 'Ansible configuration completed successfully'
+                    } catch (Exception e) {
+                        echo "Ansible configuration failed: ${e.getMessage()}"
+                        // Continue pipeline even if Ansible fails (e.g., ELK setup issue shouldn't block deployment)
+                        currentBuild.result = 'UNSTABLE'
+                    }
                 }
             }
         }
@@ -163,7 +200,7 @@ pipeline {
                 }
                 withCredentials([file(credentialsId:'gcp-key', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
                     script {
-                        echo 'Deploying to Production Kubernetes Cluster'
+                        echo 'Deploying to Production Kubernetes Cluster...'
                         sh '''
                         export PATH=$PATH:${GCLOUD_PATH}:${KUBECTL_AUTH_PLUGIN}
                         gcloud auth activate-service-account --key-file=${GOOGLE_APPLICATION_CREDENTIALS}
@@ -175,6 +212,7 @@ pipeline {
                         kubectl set image deployment/ml-app ml-app-container=${DOCKER_IMAGE}:${DOCKER_TAG}
                         kubectl rollout status deployment/ml-app
                         '''
+                        echo 'Deployment to Production completed'
                     }
                 }
             }
@@ -183,7 +221,8 @@ pipeline {
     
     post {
         always {
-            echo 'Cleaning up workspace'
+            echo 'Cleaning up workspace...'
+            archiveArtifacts artifacts: 'vault.env, coverage.xml, **/ml-app.log', allowEmptyArchive: true
             cleanWs()
         }
         success {
