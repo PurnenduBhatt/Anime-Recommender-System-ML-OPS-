@@ -1,9 +1,9 @@
 pipeline {
     agent {
-        label 'docker'  // Use a node with Docker installed
         docker {
             image 'python:3.12-slim'
-            args '-u root -v /var/run/docker.sock:/var/run/docker.sock'  // Mount Docker socket
+            label 'docker'  // Specify the node label here
+            args '-u root -v /var/run/docker.sock:/var/run/docker.sock'
         }
     }
     
@@ -45,7 +45,7 @@ pipeline {
                     echo 'Installing required system dependencies...'
                     sh '''
                     apt-get update
-                    apt-get install -y git docker.io google-cloud-sdk kubectl ansible vault
+                    apt-get install -y git docker.io google-cloud-sdk kubectl ansible vault curl libcurl4-openssl-dev
                     '''
                     echo 'System dependencies installed successfully'
                 }
