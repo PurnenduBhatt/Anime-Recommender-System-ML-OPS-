@@ -1,8 +1,9 @@
 pipeline {
     agent {
+        label 'docker'  // Use a node with Docker installed
         docker {
-            image 'python:3.12-slim'  // Use a Docker image with Python 3.12
-            args '-u root'  // Run as root to avoid permission issues
+            image 'python:3.12-slim'
+            args '-u root -v /var/run/docker.sock:/var/run/docker.sock'  // Mount Docker socket
         }
     }
     
@@ -15,7 +16,7 @@ pipeline {
         DOCKER_TAG = "${env.BUILD_NUMBER}"
         VAULT_ADDR = "http://vault:8200"
         VAULT_TOKEN = "myroot"
-        PATH = "/opt/homebrew/bin:/usr/bin:/usr/local/bin:$PATH"  // Include /usr/local/bin for installed tools
+        PATH = "/opt/homebrew/bin:/usr/bin:/usr/local/bin:$PATH"
         PYTHON_VERSION = "3.12"
     }
     
