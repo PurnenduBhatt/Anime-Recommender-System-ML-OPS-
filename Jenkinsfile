@@ -8,7 +8,7 @@ pipeline {
         DOCKER_TAG = "${env.BUILD_NUMBER}"
         VAULT_ADDR = "http://vault:8200"
         VAULT_TOKEN = "myroot"
-        PATH = "/Applications/Docker.app/Contents/Resources/bin:/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin:${env.PATH}"
+        PATH = "${env.HOME}/.pyenv/shims:/Applications/Docker.app/Contents/Resources/bin:/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin:${env.PATH}"
     }
 
     parameters {
@@ -103,13 +103,22 @@ pipeline {
 
         stage('DVC Pull') {
             steps {
-                withCredentials([file(credentialsId:'gcp-key', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
-                    script {
-                        echo 'Running DVC pull...'
-                        sh '''
-                        . ${VENV_DIR}/bin/activate
-                        dvc pull || echo "DVC pull failed, continuing anyway"
-                        '''
+                script {
+                    def credExists = false
+                    try {
+                        withCredentials([file(credentialsId:'gcp-key', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
+                            credExists = true
+                        }
+                    } catch (e) {
+                        echo "⚠️ GCP credentials not found, skipping DVC pull."
+                    }
+                    if (credExists) {
+                        withCredentials([file(credentialsId:'gcp-key', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
+                            sh '''
+                            . ${VENV_DIR}/bin/activate
+                            dvc pull || echo "DVC pull failed, continuing anyway"
+                            '''
+                        }
                     }
                 }
             }
@@ -160,16 +169,25 @@ pipeline {
 
         stage('Deploy to Development') {
             steps {
-                withCredentials([file(credentialsId:'gcp-key', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
-                    script {
-                        echo 'Deploying to dev cluster...'
-                        sh '''
-                        gcloud auth activate-service-account --key-file=${GOOGLE_APPLICATION_CREDENTIALS}
-                        gcloud config set project ${GCP_PROJECT}
-                        gcloud container clusters get-credentials ml-app-cluster --region us-central1
-                        kubectl set image deployment/ml-app ml-app-container=${DOCKER_IMAGE}:${DOCKER_TAG}
-                        kubectl rollout status deployment/ml-app
-                        '''
+                script {
+                    def credExists = false
+                    try {
+                        withCredentials([file(credentialsId:'gcp-key', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
+                            credExists = true
+                        }
+                    } catch (e) {
+                        echo "⚠️ GCP credentials not found, skipping deploy to dev."
+                    }
+                    if (credExists) {
+                        withCredentials([file(credentialsId:'gcp-key', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
+                            sh '''
+                            gcloud auth activate-service-account --key-file=${GOOGLE_APPLICATION_CREDENTIALS}
+                            gcloud config set project ${GCP_PROJECT}
+                            gcloud container clusters get-credentials ml-app-cluster --region us-central1
+                            kubectl set image deployment/ml-app ml-app-container=${DOCKER_IMAGE}:${DOCKER_TAG}
+                            kubectl rollout status deployment/ml-app
+                            '''
+                        }
                     }
                 }
             }
@@ -183,17 +201,26 @@ pipeline {
                 timeout(time: 15, unit: 'MINUTES') {
                     input message: 'Approve deployment to production?', ok: 'Deploy'
                 }
-                withCredentials([file(credentialsId:'gcp-key', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
-                    script {
-                        echo 'Deploying to production cluster...'
-                        sh '''
-                        gcloud auth activate-service-account --key-file=${GOOGLE_APPLICATION_CREDENTIALS}
-                        gcloud config set project ${GCP_PROJECT}
-                        gcloud container clusters get-credentials ml-app-prod-cluster --region us-central1
-                        kubectl apply -f k8s/production/deployment.yaml
-                        kubectl set image deployment/ml-app ml-app-container=${DOCKER_IMAGE}:${DOCKER_TAG}
-                        kubectl rollout status deployment/ml-app
-                        '''
+                script {
+                    def credExists = false
+                    try {
+                        withCredentials([file(credentialsId:'gcp-key', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
+                            credExists = true
+                        }
+                    } catch (e) {
+                        error("❌ GCP credentials missing! Cannot deploy to production.")
+                    }
+                    if (credExists) {
+                        withCredentials([file(credentialsId:'gcp-key', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
+                            sh '''
+                            gcloud auth activate-service-account --key-file=${GOOGLE_APPLICATION_CREDENTIALS}
+                            gcloud config set project ${GCP_PROJECT}
+                            gcloud container clusters get-credentials ml-app-prod-cluster --region us-central1
+                            kubectl apply -f k8s/production/deployment.yaml
+                            kubectl set image deployment/ml-app ml-app-container=${DOCKER_IMAGE}:${DOCKER_TAG}
+                            kubectl rollout status deployment/ml-app
+                            '''
+                        }
                     }
                 }
             }
