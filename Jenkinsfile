@@ -49,7 +49,7 @@ pipeline {
                 script {
                     echo 'Making a virtual environment...'
                     sh '''
-                    python -m venv ${VENV_DIR}
+                    python3 -m venv ${VENV_DIR}
                     . ${VENV_DIR}/bin/activate
                     pip install --upgrade pip
                     pip install -e .
@@ -227,11 +227,9 @@ pipeline {
         }
         success {
             echo 'Pipeline completed successfully!'
-            slackSend(color: 'good', message: "Build #${env.BUILD_NUMBER} - Success! ML App deployed successfully.")
         }
         failure {
             echo 'Pipeline failed!'
-            slackSend(color: 'danger', message: "Build #${env.BUILD_NUMBER} - Failed! Check the logs for details.")
         }
     }
 }
