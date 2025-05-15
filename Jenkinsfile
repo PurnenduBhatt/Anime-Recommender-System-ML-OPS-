@@ -8,7 +8,8 @@ pipeline {
         DOCKER_TAG = "${env.BUILD_NUMBER}"
         VAULT_ADDR = "http://vault:8200"
         VAULT_TOKEN = "myroot"
-        PYTHON_VERSION = "3.11"
+        // Add Docker Desktop paths explicitly for macOS
+        PATH = "/Applications/Docker.app/Contents/Resources/bin:/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin:${env.PATH}"
     }
     
     parameters {
@@ -33,34 +34,50 @@ pipeline {
         stage("Setup Environment") {
             steps {
                 script {
-                    echo 'Setting up environment...'
+                    echo 'Setting up environment for macOS with Docker Desktop...'
                     
-                    // Check for required tools
-                    sh 'echo "PATH: $PATH"'
-                    sh 'which python3 || echo "Python3 not found"'
-                    sh 'python3 --version || echo "Python3 not available"'
-                    sh 'which docker || echo "Docker not found"'
+                    // Display environment information
+                    sh 'echo "Current PATH: $PATH"'
+                    sh 'echo "Current user: $(whoami)"'
                     
-                    // Install Python if not available (macOS specific)
+                    // Check if Docker Desktop is running
                     sh '''
-                    if ! command -v python3 &> /dev/null; then
-                        echo "Installing Python..."
-                        if command -v brew &> /dev/null; then
-                            brew install python@3.11
+                    # Check if Docker Desktop app is running
+                    if ! pgrep -x "Docker" > /dev/null; then
+                        echo "Warning: Docker Desktop app does not appear to be running."
+                        echo "Please start Docker Desktop manually and try again."
+                        exit 1
+                    fi
+                    
+                    # Check Docker CLI accessibility
+                    if command -v docker &> /dev/null; then
+                        echo "Docker command found at: $(which docker)"
+                        docker --version || echo "Docker command exists but may not be working properly"
+                    else
+                        echo "Docker command not found in PATH. Creating symlink to Docker Desktop binary..."
+                        # Create symlink if Docker Desktop exists but isn't in PATH
+                        DOCKER_APP_BIN="/Applications/Docker.app/Contents/Resources/bin/docker"
+                        if [ -f "$DOCKER_APP_BIN" ]; then
+                            mkdir -p /usr/local/bin
+                            ln -sf "$DOCKER_APP_BIN" /usr/local/bin/docker
+                            echo "Created symlink from $DOCKER_APP_BIN to /usr/local/bin/docker"
                         else
-                            echo "Homebrew not found, cannot install Python automatically"
+                            echo "Docker Desktop binary not found at $DOCKER_APP_BIN"
+                            echo "Please ensure Docker Desktop is properly installed"
                             exit 1
                         fi
                     fi
-                    '''
                     
-                    // Install Docker if not available (macOS specific)
-                    sh '''
-                    if ! command -v docker &> /dev/null; then
-                        echo "Docker not found. Please install Docker Desktop for macOS"
-                        echo "Visit: https://docs.docker.com/desktop/install/mac/"
+                    # Test Docker functionality
+                    echo "Testing Docker functionality..."
+                    docker info || {
+                        echo "Docker command failed. Possible permission issues."
+                        echo "Try running these commands manually to fix permissions:"
+                        echo "1. sudo chown root:wheel /var/run/docker.sock"
+                        echo "2. sudo chmod g+w /var/run/docker.sock"
+                        echo "3. Add Jenkins user to docker group if appropriate"
                         exit 1
-                    fi
+                    }
                     '''
                     
                     echo 'Environment setup completed'
@@ -182,22 +199,14 @@ pipeline {
                         sh '''
                         if ! command -v gcloud &> /dev/null; then
                             echo "gcloud not found, attempting to install..."
-                            if command -v brew &> /dev/null; then
-                                brew install --cask google-cloud-sdk
-                            else
-                                echo "Cannot install gcloud automatically, please install it manually"
-                                exit 1
-                            fi
+                            curl https://sdk.cloud.google.com | bash
+                            exec -l $SHELL
+                            gcloud init
                         fi
                         
                         if ! command -v kubectl &> /dev/null; then
-                            echo "kubectl not found, attempting to install..."
-                            if command -v brew &> /dev/null; then
-                                brew install kubectl
-                            else
-                                echo "Cannot install kubectl automatically, please install it manually"
-                                exit 1
-                            fi
+                            echo "kubectl not found, attempting to install via gcloud..."
+                            gcloud components install kubectl
                         fi
                         '''
                         
