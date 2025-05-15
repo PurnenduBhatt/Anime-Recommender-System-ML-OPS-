@@ -1,5 +1,10 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'python:3.12-slim'  // Use a Docker image with Python 3.12
+            args '-u root'  // Run as root to avoid permission issues
+        }
+    }
     
     environment {
         VENV_DIR = 'venv'
@@ -10,8 +15,8 @@ pipeline {
         DOCKER_TAG = "${env.BUILD_NUMBER}"
         VAULT_ADDR = "http://vault:8200"
         VAULT_TOKEN = "myroot"
-        PATH = "/opt/homebrew/bin:/usr/bin:$PATH"
-        PYTHON_VERSION = "3.12"  // Use Python 3.12 for TensorFlow compatibility
+        PATH = "/opt/homebrew/bin:/usr/bin:/usr/local/bin:$PATH"  // Include /usr/local/bin for installed tools
+        PYTHON_VERSION = "3.12"
     }
     
     parameters {
@@ -30,6 +35,19 @@ pipeline {
             steps {
                 cleanWs()
                 echo 'Workspace cleaned successfully'
+            }
+        }
+        
+        stage("Install Dependencies") {
+            steps {
+                script {
+                    echo 'Installing required system dependencies...'
+                    sh '''
+                    apt-get update
+                    apt-get install -y git docker.io google-cloud-sdk kubectl ansible vault
+                    '''
+                    echo 'System dependencies installed successfully'
+                }
             }
         }
         
@@ -54,11 +72,11 @@ pipeline {
                 script {
                     echo 'Making a virtual environment...'
                     sh '''
-                    python${PYTHON_VERSION} -m venv ${VENV_DIR}
+                    python3 -m venv ${VENV_DIR}
                     . ${VENV_DIR}/bin/activate
                     pip install --upgrade pip
                     pip install -e .
-                    pip install tensorflow==2.16.2  # Pin TensorFlow to a compatible version
+                    pip install tensorflow==2.16.2
                     pip install dvc pytest pytest-cov flake8
                     '''
                     echo 'Virtual environment created and dependencies installed'
