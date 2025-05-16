@@ -124,23 +124,21 @@ pipeline {
             }
         }
 
-       
-stage('Run Tests') {
-    when {
-        expression { return params.RUN_TESTS }
-    }
-    steps {
-        script {
-            echo 'Running tests...'
-            sh '''
-            . ${VENV_DIR}/bin/activate
-            mkdir -p test-results
-            python tester.py || echo "Some tests failed"
-            '''
+        stage('Run Tests') {
+            when {
+                expression { return params.RUN_TESTS }
+            }
+            steps {
+                script {
+                    echo 'Running tests...'
+                    sh '''
+                    . ${VENV_DIR}/bin/activate
+                    mkdir -p test-results
+                    python tester.py || echo "Some tests failed"
+                    '''
+                }
+            }
         }
-        publishCoverage adapters: [istanbulCoberturaAdapter('coverage.xml')]
-    }
-}
 
         stage('Build Docker Image') {
             steps {
