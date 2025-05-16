@@ -3,7 +3,7 @@ numpy
 setuptools
 google-cloud-storage
 pyyaml
-tensorflow==2.16.2
+tensorflow==2.13.1
 comet-ml
 dvc
 dvc-gs
