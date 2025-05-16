@@ -134,8 +134,7 @@ pipeline {
                     sh '''
                     . ${VENV_DIR}/bin/activate
                     mkdir -p test-results
-                    pytest --cov=. --cov-report=xml:coverage.xml || echo "Some tests failed"
-                    python3 tester.py
+                    pytest tester.py --cov=. --cov-report=xml:coverage.xml || echo "Some tests failed"
                     '''
                 }
                 publishCoverage adapters: [istanbulCoberturaAdapter('coverage.xml')]
