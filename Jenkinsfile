@@ -190,24 +190,6 @@ stage('Deploy to Development') {
     }
 }
 
-stage('Deploy to Production') {
-    when {
-        expression { return params.DEPLOY_TO_PRODUCTION }
-    }
-    steps {
-        timeout(time: 15, unit: 'MINUTES') {
-            input message: 'Approve deployment to production?', ok: 'Deploy'
-        }
-        script {
-            echo '🚀 Deploying to production (local) Kubernetes using deployment.yaml...'
-            sh '''
-            kubectl apply -f deployment.yaml
-            kubectl set image deployment/ml-app ml-app-container=${DOCKER_IMAGE}:${DOCKER_TAG}
-            kubectl rollout status deployment/ml-app
-            '''
-        }
-    }
-}
 
     }
 
