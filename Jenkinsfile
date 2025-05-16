@@ -139,6 +139,37 @@ pipeline {
                 }
             }
         }
+        stage("Clean Old Docker Images & Containers") {
+    steps {
+        script {
+            echo '🧹 Cleaning up old Docker containers and images...'
+            sh '''
+            # Stop and remove all containers
+            docker container prune -f
+
+            # Remove dangling (untagged) images and old versions of the app
+            docker images --filter "reference=kunal2221/mlops-app" --format "{{.Repository}}:{{.Tag}}" | grep -v ":${BUILD_NUMBER}" | xargs -r docker rmi -f
+
+            # Also remove dangling images
+            docker image prune -f
+            '''
+        }
+    }
+}
+stage("Clean Old ELK Volumes") {
+    steps {
+        script {
+            echo '🧹 Cleaning up old ELK-related Docker volumes...'
+            sh '''
+            # Remove volumes related to ELK stack
+            docker volume ls --format "{{.Name}}" | grep -i "elk\\|logstash\\|kibana" | xargs -r docker volume rm -f
+
+            # Optionally remove unused volumes
+            docker volume prune -f
+            '''
+        }
+    }
+}
 
         stage('Build Docker Image') {
             steps {
