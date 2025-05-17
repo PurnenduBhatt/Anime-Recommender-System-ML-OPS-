@@ -170,6 +170,19 @@ stage("Clean Old ELK Volumes") {
         }
     }
 }
+stage('Cleanup Docker Artifacts') {
+    steps {
+        script {
+            echo '🧹 Removing old Docker images, volumes, and networks...'
+            sh '''
+            docker image prune -af || true
+            docker container prune -f || true
+            docker volume prune -f || true
+            docker network prune -f || true
+            '''
+        }
+    }
+}
 
         stage('Build Docker Image') {
             steps {
