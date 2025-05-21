@@ -1,0 +1,67 @@
+# 2. FILEBEAT CONFIGURATION
+# Save this to ./filebeat/filebeat.yml
+# This is the EXACT content you should use
+
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+   - /logs/ml-app.log
+  # Critical settings for proper file monitoring
+  close_inactive: 1m
+  clean_inactive: 5m
+  ignore_older: 5m
+  # Use VERY aggressive scanning
+  scan_frequency: 1s
+  # Read from beginning
+  tail_files: false  
+  harvester_buffer_size: 16384
+  backoff: 1s
+  max_backoff: 5s
+  backoff_factor: 1.5
+  fields:
+    log_type: frontend_log
+    source: "filebeat"
+  fields_under_root: true
+  # Disable JSON parsing in Filebeat (let Logstash handle it)
+  # This prevents double-parsing issues
+  json.keys_under_root: false
+  json.add_error_key: false
+  # json.message_key: message
+
+# Force frequent registry updates
+filebeat.registry.flush: 1s
+filebeat.shutdown_timeout: 5s
+
+filebeat.config.modules:
+  path: ${path.config}/modules.d/*.yml
+  reload.enabled: false
+
+setup.ilm.enabled: false
+setup.template.name: "frontend-logs"
+setup.template.pattern: "frontend-logs-*"
+
+# Add basic queue settings
+queue.mem:
+  events: 4096
+  flush.min_events: 512
+  flush.timeout: 1s
+
+output.logstash:
+  hosts: ["logstash:5044"]
+  bulk_max_size: 512
+  worker: 1
+  compression_level: 0
+  # Important! Add slow_start to false
+  slow_start: false
+
+logging.level: debug
+logging.to_files: true
+logging.files:
+  path: /var/log/filebeat
+  name: filebeat
+  keepfiles: 7
+  permissions: 0644
+
+# Add monitoring
+monitoring.enabled: true

@@ -1,0 +1,3 @@
+---
+kibana_host: localhost
+kibana_port: 5601

@@ -1,0 +1,18 @@
+input {
+  beats {
+    port => 5044
+  }
+}
+filter {
+  grok {
+    match => { "message" => "%{TIMESTAMP_ISO8601:timestamp} %{LOGLEVEL:loglevel} %{GREEDYDATA:message}" }
+  }
+}
+output {
+  elasticsearch {
+    hosts => ["http://elasticsearch:9200"]
+    index => "ml-app-%{+YYYY.MM.dd}"
+    user => "{{ elastic_user }}"
+    password => "{{ elastic_password }}"
+  }
+}

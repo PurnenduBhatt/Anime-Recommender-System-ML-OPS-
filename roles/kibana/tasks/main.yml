@@ -1,0 +1,13 @@
+---
+- name: Ensure Kibana is running
+  docker_container:
+    name: kibana
+    image: docker.elastic.co/kibana/kibana:7.17.0
+    state: started
+    ports:
+      - "5601:5601"
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    depends_on:
+      - elasticsearch
+  when: ansible_host == 'localhost'

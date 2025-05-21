@@ -1,0 +1,134 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: filebeat-config
+data:
+  filebeat.yml: |-
+    filebeat.inputs:
+    - type: log
+      enabled: true
+      paths:
+        - /app/logs/ml-app.log
+      json.keys_under_root: true
+      json.add_error_key: true
+      json.message_key: message
+      
+    output.logstash:
+      hosts: ["logstash-service:5044"]
+      
+    logging.level: debug
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ml-app
+  labels:
+    app: ml-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ml-app
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: ml-app
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: "/metrics"
+        prometheus.io/port: "5000"
+    spec:
+      containers:
+      - name: ml-app-container
+        image: kunal2221/mlops-app:v1.3
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 5000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 5000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        env:
+        - name: LOG_LEVEL
+          value: "info"
+        - name: LOGSTASH_HOST  # Add environment variable for Logstash host
+          value: "logstash-service"
+        - name: LOGSTASH_PORT  # Add environment variable for Logstash port
+          value: "5044"
+        volumeMounts:
+        - name: app-logs
+          mountPath: /app/logs
+        - name: filebeat-config
+          mountPath: /etc/filebeat
+      volumes:
+      - name: app-logs
+        emptyDir: {}
+      - name: filebeat-config
+        configMap:
+          name: filebeat-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ml-app-service
+spec:
+  type: NodePort
+  selector:
+    app: ml-app
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 5000
+    nodePort: 30081
+---
+# Logstash Service for Kubernetes
+apiVersion: v1
+kind: Service
+metadata:
+  name: logstash-service
+spec:
+  selector:
+    app: logstash
+  ports:
+  - port: 5044
+    targetPort: 5044
+  type: ClusterIP
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: ml-app-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: ml-app
+  minReplicas: 2
+  maxReplicas: 5
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 80

@@ -1,0 +1,2 @@
+mkdir -p config/archive
+mv config/elk-setup.yml config/archive/elk-setup.yml

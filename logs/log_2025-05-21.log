@@ -1,0 +1,28 @@
+2025-05-21 14:45:16,848 - WARNING - Matplotlib is building the font cache; this may take a moment.
+2025-05-21 14:45:18,483 - INFO - Failed to extract font properties from /System/Library/Fonts/Apple Color Emoji.ttc: Could not set the fontsize (invalid pixel size; error code 0x17)
+2025-05-21 14:45:18,490 - INFO - Failed to extract font properties from /System/Library/Fonts/Supplemental/NISC18030.ttf: Could not set the fontsize (invalid pixel size; error code 0x17)
+2025-05-21 14:45:18,527 - INFO - Failed to extract font properties from /System/Library/Fonts/LastResort.otf: tuple indices must be integers or slices, not str
+2025-05-21 14:45:18,533 - INFO - generated new fontManager
+2025-05-21 14:45:35,363 - INFO - DataProcessing Intialized
+2025-05-21 14:45:35,789 - INFO - Data loaded sucesfully for Data Processing
+2025-05-21 14:45:35,872 - INFO - Filtered users sucesfully...
+2025-05-21 14:45:36,363 - INFO - Scalind done for Processing 
+2025-05-21 14:45:36,408 - INFO - Encoding done for Users and Anime
+2025-05-21 14:45:36,634 - INFO - Data splitted sucesfullyy
+2025-05-21 14:45:36,641 - INFO - user2user_encoded saved sucesfully in processed directory
+2025-05-21 14:45:36,648 - INFO - user2user_decoded saved sucesfully in processed directory
+2025-05-21 14:45:36,673 - INFO - anim2anime_encoded saved sucesfully in processed directory
+2025-05-21 14:45:36,697 - INFO - anim2anime_decoded saved sucesfully in processed directory
+2025-05-21 14:45:38,910 - INFO - ALl the training testing data as well as rating_df is saved now..
+2025-05-21 14:45:41,671 - INFO - DF AND SYNOPSIS_Df saved sucesfullyy...
+2025-05-21 14:45:41,672 - INFO - Data Processing Pipeline Run sucesfully .... Congrats
+2025-05-21 14:45:48,482 - INFO - Model Training & COMET ML initialized..
+2025-05-21 14:45:49,225 - INFO - Data loaded sucesfully for Model Trainig
+2025-05-21 14:45:49,247 - INFO - Succesfully read the YAML file
+2025-05-21 14:45:49,247 - INFO - Loaded configuration from config.yaml
+2025-05-21 14:45:49,328 - INFO - Model created sucesfully....
+2025-05-21 14:46:06,730 - INFO - Model training Completedd.....
+2025-05-21 14:46:06,755 - INFO - Model saved to artifacts/model/model.h5
+2025-05-21 14:46:06,759 - INFO - Extracting weights for user_embedding
+2025-05-21 14:46:06,762 - INFO - Extracting weights for anime_embedding
+2025-05-21 14:46:06,780 - INFO - User and Anime weights saved sucesfully....

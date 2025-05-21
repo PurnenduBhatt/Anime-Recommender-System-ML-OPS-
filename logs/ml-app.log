@@ -1,0 +1,620 @@
+2025-05-17 23:52:10,181 INFO Successfully initialized Vault client
+2025-05-17 23:52:10,201 ERROR Error fetching Elasticsearch credentials from Vault: HTTPConnectionPool(host='vault', port=8200): Max retries exceeded with url: /v1/auth/token/lookup-self (Caused by NameResolutionError("<urllib3.connection.HTTPConnection object at 0x10b5fc4c0>: Failed to resolve 'vault' ([Errno 8] nodename nor servname provided, or not known)"))
+2025-05-17 23:53:26,071 INFO Successfully initialized Vault client
+2025-05-17 23:53:26,080 ERROR Error fetching Elasticsearch credentials from Vault: HTTPConnectionPool(host='vault', port=8200): Max retries exceeded with url: /v1/auth/token/lookup-self (Caused by NameResolutionError("<urllib3.connection.HTTPConnection object at 0x1170d44f0>: Failed to resolve 'vault' ([Errno 8] nodename nor servname provided, or not known)"))
+2025-05-17 23:54:07,815 INFO Successfully initialized Vault client
+2025-05-17 23:54:07,836 ERROR Error fetching Elasticsearch credentials from Vault: HTTPConnectionPool(host='vault', port=8200): Max retries exceeded with url: /v1/auth/token/lookup-self (Caused by NameResolutionError("<urllib3.connection.HTTPConnection object at 0x1171904c0>: Failed to resolve 'vault' ([Errno 8] nodename nor servname provided, or not known)"))
+2025-05-17 23:54:07,840 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.0.102:5001
+2025-05-17 23:54:07,840 INFO [33mPress CTRL+C to quit[0m
+2025-05-17 23:57:47,489 INFO [2025-05-17 23:57:47.488798] 127.0.0.1 GET / - 
+2025-05-17 23:57:47,509 INFO 127.0.0.1 - - [17/May/2025 23:57:47] "GET / HTTP/1.1" 200 -
+2025-05-17 23:57:47,528 INFO [2025-05-17 23:57:47.528949] 127.0.0.1 GET /static/style.css - 
+2025-05-17 23:57:47,536 INFO 127.0.0.1 - - [17/May/2025 23:57:47] "GET /static/style.css HTTP/1.1" 200 -
+2025-05-17 23:57:47,740 INFO [2025-05-17 23:57:47.740101] 127.0.0.1 GET /favicon.ico - 
+2025-05-17 23:57:47,741 INFO 127.0.0.1 - - [17/May/2025 23:57:47] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-05-17 23:57:52,277 INFO [2025-05-17 23:57:52.276508] 127.0.0.1 POST / - 
+2025-05-17 23:57:52,278 INFO Received recommendation request for anime: hbd
+2025-05-17 23:57:52,391 INFO Successfully generated recommendations for anime: hbd
+2025-05-17 23:57:52,392 INFO 127.0.0.1 - - [17/May/2025 23:57:52] "POST / HTTP/1.1" 200 -
+2025-05-17 23:57:52,416 INFO [2025-05-17 23:57:52.416278] 127.0.0.1 GET /static/style.css - 
+2025-05-17 23:57:52,418 INFO 127.0.0.1 - - [17/May/2025 23:57:52] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-18 00:02:50,128 INFO [2025-05-18 00:02:50.127244] 127.0.0.1 POST / - 
+2025-05-18 00:02:50,129 INFO Received recommendation request for anime: Naruto
+2025-05-18 00:02:50,452 INFO Successfully generated recommendations for anime: Naruto
+2025-05-18 00:02:50,453 INFO 127.0.0.1 - - [18/May/2025 00:02:50] "POST / HTTP/1.1" 200 -
+2025-05-18 00:02:50,475 INFO [2025-05-18 00:02:50.475356] 127.0.0.1 GET /static/style.css - 
+2025-05-18 00:02:50,480 INFO 127.0.0.1 - - [18/May/2025 00:02:50] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+{"asctime": "2025-05-18 13:15:34,097", "levelname": "INFO", "message": "Successfully initialized Vault client"}
+{"asctime": "2025-05-18 13:15:34,122", "levelname": "ERROR", "message": "", "error": "Error fetching credentials from Vault: HTTPConnectionPool(host='vault', port=8200): Max retries exceeded with url: /v1/auth/token/lookup-self (Caused by NameResolutionError(\"<urllib3.connection.HTTPConnection object at 0x137395f30>: Failed to resolve 'vault' ([Errno 8] nodename nor servname provided, or not known)\"))"}
+{"asctime": "2025-05-18 13:15:34,142", "levelname": "INFO", "message": "\u001b[31m\u001b[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.\u001b[0m\n * Running on all addresses (0.0.0.0)\n * Running on http://127.0.0.1:5001\n * Running on http://192.168.0.100:5001"}
+{"asctime": "2025-05-18 13:15:34,142", "levelname": "INFO", "message": "\u001b[33mPress CTRL+C to quit\u001b[0m"}
+{"asctime": "2025-05-18 13:16:05,869", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 13:16:05.869367", "remote_addr": "127.0.0.1", "method": "GET", "path": "/", "payload": null}
+{"asctime": "2025-05-18 13:16:05,886", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 13:16:05] \"GET / HTTP/1.1\" 200 -"}
+{"asctime": "2025-05-18 13:16:05,892", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 13:16:05.892556", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-18 13:16:05,898", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 13:16:05] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -"}
+{"asctime": "2025-05-18 13:16:14,397", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 13:16:14.396542", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-18 13:16:14,398", "levelname": "INFO", "message": "Received recommendation request", "anime": "Naruto"}
+{"asctime": "2025-05-18 13:16:14,684", "levelname": "INFO", "message": "Generated recommendations", "anime": "Naruto"}
+{"asctime": "2025-05-18 13:16:14,684", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 13:16:14] \"POST / HTTP/1.1\" 200 -"}
+{"asctime": "2025-05-18 13:16:14,698", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 13:16:14.698509", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-18 13:16:14,699", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 13:16:14] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -"}
+{"asctime": "2025-05-18 13:44:53,792", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 13:44:53.789975", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-18 13:44:53,795", "levelname": "INFO", "message": "Received recommendation request", "anime": "Naruto"}
+{"asctime": "2025-05-18 13:44:54,163", "levelname": "INFO", "message": "Generated recommendations", "anime": "Naruto"}
+{"asctime": "2025-05-18 13:44:54,164", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 13:44:54] \"POST / HTTP/1.1\" 200 -"}
+{"asctime": "2025-05-18 13:44:54,210", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 13:44:54.210075", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-18 13:44:54,215", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 13:44:54] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -"}
+{"asctime": "2025-05-18 13:47:47,922", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 13:47:47.921837", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-18 13:47:47,923", "levelname": "INFO", "message": "Received recommendation request", "anime": "Naruto"}
+{"asctime": "2025-05-18 13:47:48,267", "levelname": "INFO", "message": "Generated recommendations", "anime": "Naruto"}
+{"asctime": "2025-05-18 13:47:48,267", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 13:47:48] \"POST / HTTP/1.1\" 200 -"}
+{"asctime": "2025-05-18 13:47:48,276", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 13:47:48.276633", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-18 13:47:48,278", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 13:47:48] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -"}
+{"asctime": "2025-05-18 15:42:10,815", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 15:42:10.811737", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-18 15:42:10,820", "levelname": "INFO", "message": "Received recommendation request", "anime": "Naruto"}
+{"asctime": "2025-05-18 15:42:11,163", "levelname": "INFO", "message": "Generated recommendations", "anime": "Naruto"}
+{"asctime": "2025-05-18 15:42:11,165", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 15:42:11] \"POST / HTTP/1.1\" 200 -"}
+{"asctime": "2025-05-18 15:42:11,179", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 15:42:11.179286", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-18 15:42:11,181", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 15:42:11] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -"}
+{"asctime": "2025-05-18 16:06:24,611", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 16:06:24.604636", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-18 16:06:24,626", "levelname": "INFO", "message": "Received recommendation request", "anime": "Naruto"}
+{"asctime": "2025-05-18 16:06:25,206", "levelname": "INFO", "message": "Generated recommendations", "anime": "Naruto"}
+{"asctime": "2025-05-18 16:06:25,209", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 16:06:25] \"POST / HTTP/1.1\" 200 -"}
+{"asctime": "2025-05-18 16:06:25,327", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 16:06:25.327848", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-18 16:06:25,330", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 16:06:25] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -"}
+{"asctime": "2025-05-18 16:13:02,688", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 16:13:02.687218", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-18 16:13:02,690", "levelname": "INFO", "message": "Received recommendation request", "anime": "Naruto"}
+{"asctime": "2025-05-18 16:13:03,029", "levelname": "INFO", "message": "Generated recommendations", "anime": "Naruto"}
+{"asctime": "2025-05-18 16:13:03,030", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 16:13:03] \"POST / HTTP/1.1\" 200 -"}
+{"asctime": "2025-05-18 16:13:03,092", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 16:13:03.092788", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-18 16:13:03,093", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 16:13:03] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -"}
+{"asctime": "2025-05-18 16:55:28,829", "levelname": "INFO", "message": "Successfully initialized Vault client"}
+{"asctime": "2025-05-18 16:55:28,841", "levelname": "ERROR", "message": "", "error": "Error fetching credentials from Vault: HTTPConnectionPool(host='vault', port=8200): Max retries exceeded with url: /v1/auth/token/lookup-self (Caused by NameResolutionError(\"<urllib3.connection.HTTPConnection object at 0x11b4d5f30>: Failed to resolve 'vault' ([Errno 8] nodename nor servname provided, or not known)\"))"}
+{"asctime": "2025-05-18 16:55:28,846", "levelname": "INFO", "message": "\u001b[31m\u001b[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.\u001b[0m\n * Running on all addresses (0.0.0.0)\n * Running on http://127.0.0.1:5001\n * Running on http://192.168.0.100:5001"}
+{"asctime": "2025-05-18 16:55:28,846", "levelname": "INFO", "message": "\u001b[33mPress CTRL+C to quit\u001b[0m"}
+{"asctime": "2025-05-18 16:56:42,645", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 16:56:42.645041", "remote_addr": "127.0.0.1", "method": "GET", "path": "/", "payload": null}
+{"asctime": "2025-05-18 16:56:42,669", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 16:56:42] \"GET / HTTP/1.1\" 200 -"}
+{"asctime": "2025-05-18 16:56:42,674", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 16:56:42.674917", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-18 16:56:42,690", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 16:56:42] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -"}
+{"asctime": "2025-05-18 17:38:55,823", "levelname": "INFO", "message": "Successfully initialized Vault client"}
+{"asctime": "2025-05-18 17:38:55,836", "levelname": "ERROR", "message": "", "error": "Error fetching credentials from Vault: HTTPConnectionPool(host='vault', port=8200): Max retries exceeded with url: /v1/auth/token/lookup-self (Caused by NameResolutionError(\"<urllib3.connection.HTTPConnection object at 0x127489f30>: Failed to resolve 'vault' ([Errno 8] nodename nor servname provided, or not known)\"))"}
+{"asctime": "2025-05-18 18:20:10,790", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 18:20:10.789309", "remote_addr": "127.0.0.1", "method": "GET", "path": "/", "payload": null}
+{"asctime": "2025-05-18 18:20:10,808", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 18:20:10] \"GET / HTTP/1.1\" 200 -"}
+{"asctime": "2025-05-18 18:20:10,839", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 18:20:10.839572", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-18 18:20:10,845", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 18:20:10] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -"}
+{"asctime": "2025-05-18 18:20:16,517", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 18:20:16.514605", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-18 18:20:16,518", "levelname": "INFO", "message": "Received recommendation request", "anime": "Naruto"}
+{"asctime": "2025-05-18 18:20:16,926", "levelname": "INFO", "message": "Generated recommendations", "anime": "Naruto"}
+{"asctime": "2025-05-18 18:20:16,926", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 18:20:16] \"POST / HTTP/1.1\" 200 -"}
+{"asctime": "2025-05-18 18:20:16,948", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 18:20:16.947998", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-18 18:20:16,949", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 18:20:16] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -"}
+{"asctime": "2025-05-18 18:20:55,220", "levelname": "INFO", "message": "Successfully initialized Vault client"}
+{"asctime": "2025-05-18 18:20:55,231", "levelname": "ERROR", "message": "", "error": "Error fetching credentials from Vault: HTTPConnectionPool(host='vault', port=8200): Max retries exceeded with url: /v1/auth/token/lookup-self (Caused by NameResolutionError(\"<urllib3.connection.HTTPConnection object at 0x127b95f30>: Failed to resolve 'vault' ([Errno 8] nodename nor servname provided, or not known)\"))"}
+{"asctime": "2025-05-18 18:21:07,900", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 18:21:07.897142", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=naruto"}
+{"asctime": "2025-05-18 18:21:07,902", "levelname": "INFO", "message": "Received recommendation request", "anime": "naruto"}
+{"asctime": "2025-05-18 18:21:08,190", "levelname": "INFO", "message": "Generated recommendations", "anime": "naruto"}
+{"asctime": "2025-05-18 18:21:08,191", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 18:21:08] \"POST / HTTP/1.1\" 200 -"}
+{"asctime": "2025-05-18 18:21:08,202", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 18:21:08.202438", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-18 18:21:08,237", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 18:21:08] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -"}
+{"asctime": "2025-05-18 18:21:46,550", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 18:21:46.549107", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=demonslayer"}
+{"asctime": "2025-05-18 18:21:46,552", "levelname": "INFO", "message": "Received recommendation request", "anime": "demonslayer"}
+{"asctime": "2025-05-18 18:21:46,624", "levelname": "INFO", "message": "Generated recommendations", "anime": "demonslayer"}
+{"asctime": "2025-05-18 18:21:46,625", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 18:21:46] \"POST / HTTP/1.1\" 200 -"}
+{"asctime": "2025-05-18 18:21:46,638", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 18:21:46.638881", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-18 18:21:46,639", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 18:21:46] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -"}
+{"asctime": "2025-05-18 18:22:02,898", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 18:22:02.897902", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=black+clover"}
+{"asctime": "2025-05-18 18:22:02,900", "levelname": "INFO", "message": "Received recommendation request", "anime": "black clover"}
+{"asctime": "2025-05-18 18:22:03,233", "levelname": "INFO", "message": "Generated recommendations", "anime": "black clover"}
+{"asctime": "2025-05-18 18:22:03,233", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 18:22:03] \"POST / HTTP/1.1\" 200 -"}
+{"asctime": "2025-05-18 18:22:03,237", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 18:22:03.237805", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-18 18:22:03,238", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 18:22:03] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -"}
+{"asctime": "2025-05-18 18:22:48,421", "levelname": "INFO", "message": "Successfully initialized Vault client"}
+{"asctime": "2025-05-18 18:22:48,437", "levelname": "ERROR", "message": "", "error": "Error fetching credentials from Vault: HTTPConnectionPool(host='vault', port=8200): Max retries exceeded with url: /v1/auth/token/lookup-self (Caused by NameResolutionError(\"<urllib3.connection.HTTPConnection object at 0x11c4d5f30>: Failed to resolve 'vault' ([Errno 8] nodename nor servname provided, or not known)\"))"}
+{"asctime": "2025-05-18 18:23:05,705", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 18:23:05.704726", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=black+clover"}
+{"asctime": "2025-05-18 18:23:05,706", "levelname": "INFO", "message": "Received recommendation request", "anime": "black clover"}
+{"asctime": "2025-05-18 18:23:06,048", "levelname": "INFO", "message": "Generated recommendations", "anime": "black clover"}
+{"asctime": "2025-05-18 18:23:06,049", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 18:23:06] \"POST / HTTP/1.1\" 200 -"}
+{"asctime": "2025-05-18 18:23:06,068", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 18:23:06.068518", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-18 18:23:06,070", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 18:23:06] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -"}
+{"asctime": "2025-05-18 18:23:46,090", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 18:23:46.089581", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-18 18:23:46,091", "levelname": "INFO", "message": "Received recommendation request", "anime": "Naruto"}
+{"asctime": "2025-05-18 18:23:46,416", "levelname": "INFO", "message": "Generated recommendations", "anime": "Naruto"}
+{"asctime": "2025-05-18 18:23:46,416", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 18:23:46] \"POST / HTTP/1.1\" 200 -"}
+{"asctime": "2025-05-18 18:23:46,436", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 18:23:46.436319", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-18 18:23:46,437", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 18:23:46] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -"}
+{"asctime": "2025-05-18 18:29:54,495", "levelname": "INFO", "message": "Successfully initialized Vault client"}
+{"asctime": "2025-05-18 18:29:54,504", "levelname": "ERROR", "message": "", "error": "Error fetching credentials from Vault: HTTPConnectionPool(host='vault', port=8200): Max retries exceeded with url: /v1/auth/token/lookup-self (Caused by NameResolutionError(\"<urllib3.connection.HTTPConnection object at 0x12c3b5f30>: Failed to resolve 'vault' ([Errno 8] nodename nor servname provided, or not known)\"))"}
+{"asctime": "2025-05-18 18:29:54,507", "levelname": "INFO", "message": "\u001b[31m\u001b[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.\u001b[0m\n * Running on all addresses (0.0.0.0)\n * Running on http://127.0.0.1:5001\n * Running on http://192.168.0.100:5001"}
+{"asctime": "2025-05-18 18:29:54,507", "levelname": "INFO", "message": "\u001b[33mPress CTRL+C to quit\u001b[0m"}
+{"asctime": "2025-05-18 18:30:00,141", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 18:30:00.141261", "remote_addr": "127.0.0.1", "method": "GET", "path": "/", "payload": null}
+{"asctime": "2025-05-18 18:30:00,145", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 18:30:00] \"GET / HTTP/1.1\" 200 -"}
+{"asctime": "2025-05-18 18:30:00,148", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 18:30:00.148044", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-18 18:30:00,151", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 18:30:00] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -"}
+{"asctime": "2025-05-18 18:30:08,529", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 18:30:08.528631", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-18 18:30:08,530", "levelname": "INFO", "message": "Received recommendation request", "anime": "Naruto"}
+{"asctime": "2025-05-18 18:30:08,839", "levelname": "INFO", "message": "Generated recommendations", "anime": "Naruto"}
+{"asctime": "2025-05-18 18:30:08,840", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 18:30:08] \"POST / HTTP/1.1\" 200 -"}
+{"asctime": "2025-05-18 18:30:08,859", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 18:30:08.859222", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-18 18:30:08,861", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 18:30:08] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -"}
+{"asctime": "2025-05-18 18:30:22,371", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 18:30:22.370721", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=black+clover"}
+{"asctime": "2025-05-18 18:30:22,373", "levelname": "INFO", "message": "Received recommendation request", "anime": "black clover"}
+{"asctime": "2025-05-18 18:30:22,674", "levelname": "INFO", "message": "Generated recommendations", "anime": "black clover"}
+{"asctime": "2025-05-18 18:30:22,674", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 18:30:22] \"POST / HTTP/1.1\" 200 -"}
+{"asctime": "2025-05-18 18:30:22,690", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 18:30:22.690750", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-18 18:30:22,692", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 18:30:22] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -"}
+{"asctime": "2025-05-18 18:31:07,617", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 18:31:07.616817", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-18 18:31:07,620", "levelname": "INFO", "message": "Received recommendation request", "anime": "Naruto"}
+{"asctime": "2025-05-18 18:31:07,951", "levelname": "INFO", "message": "Generated recommendations", "anime": "Naruto"}
+{"asctime": "2025-05-18 18:31:07,951", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 18:31:07] \"POST / HTTP/1.1\" 200 -"}
+{"asctime": "2025-05-18 18:31:07,968", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 18:31:07.968268", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-18 18:31:07,972", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 18:31:07] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -"}
+{"asctime": "2025-05-18 18:44:21,324", "levelname": "INFO", "message": "Successfully initialized Vault client"}
+{"asctime": "2025-05-18 18:44:21,337", "levelname": "ERROR", "message": "", "error": "Error fetching credentials from Vault: HTTPConnectionPool(host='vault', port=8200): Max retries exceeded with url: /v1/auth/token/lookup-self (Caused by NameResolutionError(\"<urllib3.connection.HTTPConnection object at 0x1534d5f30>: Failed to resolve 'vault' ([Errno 8] nodename nor servname provided, or not known)\"))"}
+{"asctime": "2025-05-18 18:44:21,340", "levelname": "INFO", "message": "\u001b[31m\u001b[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.\u001b[0m\n * Running on all addresses (0.0.0.0)\n * Running on http://127.0.0.1:5001\n * Running on http://192.168.0.100:5001"}
+{"asctime": "2025-05-18 18:44:21,340", "levelname": "INFO", "message": "\u001b[33mPress CTRL+C to quit\u001b[0m"}
+{"asctime": "2025-05-18 18:44:54,717", "levelname": "INFO", "message": "Successfully initialized Vault client"}
+{"asctime": "2025-05-18 18:44:54,736", "levelname": "ERROR", "message": "", "error": "Error fetching credentials from Vault: HTTPConnectionPool(host='vault', port=8200): Max retries exceeded with url: /v1/auth/token/lookup-self (Caused by NameResolutionError(\"<urllib3.connection.HTTPConnection object at 0x10fad5f30>: Failed to resolve 'vault' ([Errno 8] nodename nor servname provided, or not known)\"))"}
+{"asctime": "2025-05-18 18:44:54,742", "levelname": "INFO", "message": "\u001b[31m\u001b[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.\u001b[0m\n * Running on all addresses (0.0.0.0)\n * Running on http://127.0.0.1:5001\n * Running on http://192.168.0.100:5001"}
+{"asctime": "2025-05-18 18:44:54,742", "levelname": "INFO", "message": "\u001b[33mPress CTRL+C to quit\u001b[0m"}
+{"asctime": "2025-05-18 18:45:13,117", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 18:45:13.117574", "remote_addr": "127.0.0.1", "method": "GET", "path": "/", "payload": null}
+{"asctime": "2025-05-18 18:45:13,128", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 18:45:13] \"GET / HTTP/1.1\" 200 -"}
+{"asctime": "2025-05-18 18:45:13,131", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 18:45:13.131008", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-18 18:45:13,134", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 18:45:13] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -"}
+{"asctime": "2025-05-18 18:45:13,140", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 18:45:13.140859", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-18 18:45:13,141", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 18:45:13] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -"}
+{"asctime": "2025-05-18 18:45:19,126", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 18:45:19.123778", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-18 18:45:19,127", "levelname": "INFO", "message": "Received recommendation request", "anime": "Naruto"}
+{"asctime": "2025-05-18 18:45:19,433", "levelname": "INFO", "message": "Generated recommendations", "anime": "Naruto"}
+{"asctime": "2025-05-18 18:45:19,434", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 18:45:19] \"POST / HTTP/1.1\" 200 -"}
+{"asctime": "2025-05-18 18:45:19,444", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 18:45:19.444044", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-18 18:45:19,445", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 18:45:19] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -"}
+{"asctime": "2025-05-18 18:45:53,439", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 18:45:53.438846", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=naruto"}
+{"asctime": "2025-05-18 18:45:53,441", "levelname": "INFO", "message": "Received recommendation request", "anime": "naruto"}
+{"asctime": "2025-05-18 18:45:53,770", "levelname": "INFO", "message": "Generated recommendations", "anime": "naruto"}
+{"asctime": "2025-05-18 18:45:53,771", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 18:45:53] \"POST / HTTP/1.1\" 200 -"}
+{"asctime": "2025-05-18 18:45:53,797", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 18:45:53.797966", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-18 18:45:53,799", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 18:45:53] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -"}
+{"asctime": "2025-05-18 18:58:31,020", "levelname": "INFO", "message": "Successfully initialized Vault client"}
+{"asctime": "2025-05-18 18:58:31,049", "levelname": "ERROR", "message": "", "error": "Error fetching credentials from Vault: HTTPConnectionPool(host='vault', port=8200): Max retries exceeded with url: /v1/auth/token/lookup-self (Caused by NameResolutionError(\"<urllib3.connection.HTTPConnection object at 0x120c91f30>: Failed to resolve 'vault' ([Errno 8] nodename nor servname provided, or not known)\"))"}
+{"asctime": "2025-05-18 18:59:04,941", "levelname": "INFO", "message": "Successfully initialized Vault client"}
+{"asctime": "2025-05-18 18:59:04,956", "levelname": "ERROR", "message": "", "error": "Error fetching credentials from Vault: HTTPConnectionPool(host='vault', port=8200): Max retries exceeded with url: /v1/auth/token/lookup-self (Caused by NameResolutionError(\"<urllib3.connection.HTTPConnection object at 0x12ead5f30>: Failed to resolve 'vault' ([Errno 8] nodename nor servname provided, or not known)\"))"}
+{"asctime": "2025-05-18 18:59:04,962", "levelname": "INFO", "message": "\u001b[31m\u001b[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.\u001b[0m\n * Running on all addresses (0.0.0.0)\n * Running on http://127.0.0.1:5001\n * Running on http://192.168.0.100:5001"}
+{"asctime": "2025-05-18 18:59:04,962", "levelname": "INFO", "message": "\u001b[33mPress CTRL+C to quit\u001b[0m"}
+{"asctime": "2025-05-18 19:00:33,773", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 19:00:33.773671", "remote_addr": "127.0.0.1", "method": "GET", "path": "/", "payload": null}
+{"asctime": "2025-05-18 19:00:33,783", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 19:00:33] \"GET / HTTP/1.1\" 200 -"}
+{"asctime": "2025-05-18 19:00:33,790", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 19:00:33.790066", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-18 19:00:33,792", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 19:00:33] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -"}
+{"asctime": "2025-05-18 19:00:42,098", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 19:00:42.098151", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-18 19:00:42,099", "levelname": "INFO", "message": "Received recommendation request", "anime": "Naruto"}
+{"asctime": "2025-05-18 19:00:42,377", "levelname": "INFO", "message": "Generated recommendations", "anime": "Naruto"}
+{"asctime": "2025-05-18 19:00:42,378", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 19:00:42] \"POST / HTTP/1.1\" 200 -"}
+{"asctime": "2025-05-18 19:00:42,389", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 19:00:42.389076", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-18 19:00:42,390", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 19:00:42] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -"}
+{"asctime": "2025-05-18 19:16:30,091", "levelname": "INFO", "message": "Successfully initialized Vault client"}
+{"asctime": "2025-05-18 19:16:30,108", "levelname": "ERROR", "message": "", "error": "Error fetching credentials from Vault: HTTPConnectionPool(host='vault', port=8200): Max retries exceeded with url: /v1/auth/token/lookup-self (Caused by NameResolutionError(\"<urllib3.connection.HTTPConnection object at 0x11dad5f30>: Failed to resolve 'vault' ([Errno 8] nodename nor servname provided, or not known)\"))"}
+{"asctime": "2025-05-18 19:16:58,026", "levelname": "INFO", "message": "Successfully initialized Vault client"}
+{"asctime": "2025-05-18 19:16:58,045", "levelname": "ERROR", "message": "", "error": "Error fetching credentials from Vault: HTTPConnectionPool(host='vault', port=8200): Max retries exceeded with url: /v1/auth/token/lookup-self (Caused by NameResolutionError(\"<urllib3.connection.HTTPConnection object at 0x1208d5f30>: Failed to resolve 'vault' ([Errno 8] nodename nor servname provided, or not known)\"))"}
+{"asctime": "2025-05-18 19:16:58,047", "levelname": "INFO", "message": "\u001b[31m\u001b[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.\u001b[0m\n * Running on all addresses (0.0.0.0)\n * Running on http://127.0.0.1:5001\n * Running on http://192.168.0.100:5001"}
+{"asctime": "2025-05-18 19:16:58,047", "levelname": "INFO", "message": "\u001b[33mPress CTRL+C to quit\u001b[0m"}
+{"asctime": "2025-05-18 19:17:11,626", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 19:17:11.626015", "remote_addr": "127.0.0.1", "method": "GET", "path": "/", "payload": null}
+{"asctime": "2025-05-18 19:17:11,636", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 19:17:11] \"GET / HTTP/1.1\" 200 -"}
+{"asctime": "2025-05-18 19:17:11,645", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 19:17:11.645373", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-18 19:17:11,648", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 19:17:11] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -"}
+{"asctime": "2025-05-18 19:17:17,593", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 19:17:17.593227", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-18 19:17:17,595", "levelname": "INFO", "message": "Received recommendation request", "anime": "Naruto"}
+{"asctime": "2025-05-18 19:17:17,891", "levelname": "INFO", "message": "Generated recommendations", "anime": "Naruto"}
+{"asctime": "2025-05-18 19:17:17,892", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 19:17:17] \"POST / HTTP/1.1\" 200 -"}
+{"asctime": "2025-05-18 19:17:17,914", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 19:17:17.914017", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-18 19:17:17,915", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 19:17:17] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -"}
+{"asctime": "2025-05-18 23:31:10,699", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 23:31:10.698596", "remote_addr": "127.0.0.1", "method": "GET", "path": "/", "payload": null}
+{"asctime": "2025-05-18 23:31:10,710", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 23:31:10] \"GET / HTTP/1.1\" 200 -"}
+{"asctime": "2025-05-18 23:31:10,739", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 23:31:10.739824", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-18 23:31:10,744", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 23:31:10] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -"}
+{"asctime": "2025-05-18 23:31:25,853", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 23:31:25.852467", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-18 23:31:25,854", "levelname": "INFO", "message": "Received recommendation request", "anime": "Naruto"}
+{"asctime": "2025-05-18 23:31:26,188", "levelname": "INFO", "message": "Generated recommendations", "anime": "Naruto"}
+{"asctime": "2025-05-18 23:31:26,189", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 23:31:26] \"POST / HTTP/1.1\" 200 -"}
+{"asctime": "2025-05-18 23:31:26,210", "levelname": "INFO", "message": "", "timestamp": "2025-05-18 23:31:26.210050", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-18 23:31:26,212", "levelname": "INFO", "message": "127.0.0.1 - - [18/May/2025 23:31:26] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -"}
+{"asctime": "2025-05-19 00:02:56,646", "levelname": "INFO", "message": "", "timestamp": "2025-05-19 00:02:56.643822", "remote_addr": "127.0.0.1", "method": "GET", "path": "/", "payload": null}
+{"asctime": "2025-05-19 00:02:56,658", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 00:02:56] \"GET / HTTP/1.1\" 200 -"}
+{"asctime": "2025-05-19 00:02:56,692", "levelname": "INFO", "message": "", "timestamp": "2025-05-19 00:02:56.692138", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-19 00:02:56,703", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 00:02:56] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -"}
+{"asctime": "2025-05-19 00:03:01,908", "levelname": "INFO", "message": "", "timestamp": "2025-05-19 00:03:01.905555", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-19 00:03:01,912", "levelname": "INFO", "message": "Received recommendation request", "anime": "Naruto"}
+{"asctime": "2025-05-19 00:03:02,394", "levelname": "INFO", "message": "Generated recommendations", "anime": "Naruto"}
+{"asctime": "2025-05-19 00:03:02,395", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 00:03:02] \"POST / HTTP/1.1\" 200 -"}
+{"asctime": "2025-05-19 00:03:02,407", "levelname": "INFO", "message": "", "timestamp": "2025-05-19 00:03:02.407398", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-19 00:03:02,407", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 00:03:02] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -"}
+{"asctime": "2025-05-19 00:07:16,124", "levelname": "INFO", "message": "", "timestamp": "2025-05-19 00:07:16.123375", "remote_addr": "127.0.0.1", "method": "GET", "path": "/", "payload": null}
+{"asctime": "2025-05-19 00:07:16,142", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 00:07:16] \"GET / HTTP/1.1\" 200 -"}
+{"asctime": "2025-05-19 00:07:16,198", "levelname": "INFO", "message": "", "timestamp": "2025-05-19 00:07:16.197973", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-19 00:07:16,209", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 00:07:16] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -"}
+{"asctime": "2025-05-19 00:07:20,962", "levelname": "INFO", "message": "", "timestamp": "2025-05-19 00:07:20.961637", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-19 00:07:20,965", "levelname": "INFO", "message": "Received recommendation request", "anime": "Naruto"}
+{"asctime": "2025-05-19 00:07:21,482", "levelname": "INFO", "message": "Generated recommendations", "anime": "Naruto"}
+{"asctime": "2025-05-19 00:07:21,483", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 00:07:21] \"POST / HTTP/1.1\" 200 -"}
+{"asctime": "2025-05-19 00:07:21,495", "levelname": "INFO", "message": "", "timestamp": "2025-05-19 00:07:21.495729", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-19 00:07:21,497", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 00:07:21] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -"}
+{"asctime": "2025-05-19 00:09:33,176", "levelname": "INFO", "message": "", "timestamp": "2025-05-19 00:09:33.175964", "remote_addr": "127.0.0.1", "method": "GET", "path": "/", "payload": null}
+{"asctime": "2025-05-19 00:09:33,185", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 00:09:33] \"GET / HTTP/1.1\" 200 -"}
+{"asctime": "2025-05-19 00:09:33,192", "levelname": "INFO", "message": "", "timestamp": "2025-05-19 00:09:33.192544", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-19 00:09:33,195", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 00:09:33] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -"}
+{"asctime": "2025-05-19 00:09:51,035", "levelname": "INFO", "message": "", "timestamp": "2025-05-19 00:09:51.027051", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=naruto"}
+{"asctime": "2025-05-19 00:09:51,039", "levelname": "INFO", "message": "Received recommendation request", "anime": "naruto"}
+{"asctime": "2025-05-19 00:09:51,508", "levelname": "INFO", "message": "Generated recommendations", "anime": "naruto"}
+{"asctime": "2025-05-19 00:09:51,509", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 00:09:51] \"POST / HTTP/1.1\" 200 -"}
+{"asctime": "2025-05-19 00:09:51,530", "levelname": "INFO", "message": "", "timestamp": "2025-05-19 00:09:51.530082", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-19 00:09:51,532", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 00:09:51] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -"}
+{"asctime": "2025-05-19 00:29:47,624", "levelname": "INFO", "message": "Successfully initialized Vault client", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19 00:29:47,651", "levelname": "ERROR", "message": "Error fetching credentials from Vault: HTTPConnectionPool(host='vault', port=8200): Max retries exceeded with url: /v1/auth/token/lookup-self (Caused by NameResolutionError(\"<urllib3.connection.HTTPConnection object at 0x11a3cb010>: Failed to resolve 'vault' ([Errno 8] nodename nor servname provided, or not known)\"))", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19 00:30:57,757", "levelname": "INFO", "message": "Successfully initialized Vault client", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19 00:30:57,783", "levelname": "ERROR", "message": "Error fetching credentials from Vault: HTTPConnectionPool(host='vault', port=8200): Max retries exceeded with url: /v1/auth/token/lookup-self (Caused by NameResolutionError(\"<urllib3.connection.HTTPConnection object at 0x1185cb010>: Failed to resolve 'vault' ([Errno 8] nodename nor servname provided, or not known)\"))", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19 00:30:57,788", "levelname": "INFO", "message": "\u001b[31m\u001b[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.\u001b[0m\n * Running on all addresses (0.0.0.0)\n * Running on http://127.0.0.1:5001\n * Running on http://192.168.0.100:5001", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19 00:30:57,788", "levelname": "INFO", "message": "\u001b[33mPress CTRL+C to quit\u001b[0m", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19 00:31:03,270", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/", "payload": null}
+{"asctime": "2025-05-19 00:31:03,279", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 00:31:03] \"GET / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19 00:31:03,356", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-19 00:31:03,362", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 00:31:03] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19 00:31:08,154", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-19 00:31:08,157", "levelname": "INFO", "message": "Received recommendation request for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-19 00:31:08,492", "levelname": "INFO", "message": "Generated recommendations for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": null}
+{"asctime": "2025-05-19 00:31:08,492", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 00:31:08] \"POST / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19 00:31:08,504", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-19 00:31:08,506", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 00:31:08] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19 00:44:56,723", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/", "payload": null}
+{"asctime": "2025-05-19 00:44:56,737", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 00:44:56] \"GET / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19 00:44:56,781", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-19 00:44:56,789", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 00:44:56] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19 00:45:01,999", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-19 00:45:02,000", "levelname": "INFO", "message": "Received recommendation request for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-19 00:45:02,341", "levelname": "INFO", "message": "Generated recommendations for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": null}
+{"asctime": "2025-05-19 00:45:02,342", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 00:45:02] \"POST / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19 00:45:02,360", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-19 00:45:02,360", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 00:45:02] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19 01:09:47,346", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/", "payload": null}
+{"asctime": "2025-05-19 01:09:47,368", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 01:09:47] \"GET / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19 01:09:47,411", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-19 01:09:47,417", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 01:09:47] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19 01:09:53,197", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-19 01:09:53,199", "levelname": "INFO", "message": "Received recommendation request for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-19 01:09:53,660", "levelname": "INFO", "message": "Generated recommendations for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": null}
+{"asctime": "2025-05-19 01:09:53,661", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 01:09:53] \"POST / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19 01:09:53,684", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-19 01:09:53,686", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 01:09:53] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19 01:21:38,573", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-19 01:21:38,586", "levelname": "INFO", "message": "Received recommendation request for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-19 01:21:39,213", "levelname": "INFO", "message": "Generated recommendations for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": null}
+{"asctime": "2025-05-19 01:21:39,217", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 01:21:39] \"POST / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19 01:21:39,231", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-19 01:21:39,237", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 01:21:39] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19 01:52:53,164", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/", "payload": null}
+{"asctime": "2025-05-19 01:52:53,213", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 01:52:53] \"GET / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19 01:52:53,257", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-19 01:52:53,276", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 01:52:53] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19 01:52:57,757", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=naruto"}
+{"asctime": "2025-05-19 01:52:57,758", "levelname": "INFO", "message": "Received recommendation request for anime: naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=naruto"}
+{"asctime": "2025-05-19 01:52:58,212", "levelname": "INFO", "message": "Generated recommendations for anime: naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": null}
+{"asctime": "2025-05-19 01:52:58,213", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 01:52:58] \"POST / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19 01:52:58,274", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-19 01:52:58,277", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 01:52:58] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19 02:01:19,530", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/", "payload": null}
+{"asctime": "2025-05-19 02:01:19,537", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 02:01:19] \"GET / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19 02:01:19,549", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-19 02:01:19,554", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 02:01:19] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19 02:01:24,405", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-19 02:01:24,405", "levelname": "INFO", "message": "Received recommendation request for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-19 02:01:24,750", "levelname": "INFO", "message": "Generated recommendations for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": null}
+{"asctime": "2025-05-19 02:01:24,751", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 02:01:24] \"POST / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19 02:01:24,775", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-19 02:01:24,775", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 02:01:24] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19 02:49:52,693", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-19 02:49:52,732", "levelname": "INFO", "message": "Received recommendation request for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-19 02:49:53,332", "levelname": "INFO", "message": "Generated recommendations for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": null}
+{"asctime": "2025-05-19 02:49:53,335", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 02:49:53] \"POST / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19 02:49:53,375", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-19 02:49:53,382", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 02:49:53] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19 02:53:42,299", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/health", "payload": null}
+{"asctime": "2025-05-19 02:53:42,304", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 02:53:42] \"GET /health HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+Test log entry Mon May 19 02:58:55 IST 2025
+{"asctime": "2025-05-19 03:17:38,475", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-19 03:17:38,479", "levelname": "INFO", "message": "Received recommendation request for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-19 03:17:39,018", "levelname": "INFO", "message": "Generated recommendations for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": null}
+{"asctime": "2025-05-19 03:17:39,023", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 03:17:39] \"POST / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19 03:17:39,087", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-19 03:17:39,095", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 03:17:39] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19 03:44:59,963", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-19 03:44:59,966", "levelname": "INFO", "message": "Received recommendation request for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-19 03:45:00,451", "levelname": "INFO", "message": "Generated recommendations for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": null}
+{"asctime": "2025-05-19 03:45:00,452", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 03:45:00] \"POST / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19 03:45:00,466", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-19 03:45:00,473", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 03:45:00] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T12:16:38.000Z", "levelname": "INFO", "message": "Application starting", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T12:16:38.000Z", "levelname": "INFO", "message": "Successfully initialized Vault client", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T12:16:38.000Z", "levelname": "ERROR", "message": "Error fetching credentials from Vault: HTTPConnectionPool(host='vault', port=8200): Max retries exceeded with url: /v1/auth/token/lookup-self (Caused by NameResolutionError(\"<urllib3.connection.HTTPConnection object at 0x11698f940>: Failed to resolve 'vault' ([Errno 8] nodename nor servname provided, or not known)\"))", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T12:16:38.000Z", "levelname": "INFO", "message": "\u001b[31m\u001b[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.\u001b[0m\n * Running on all addresses (0.0.0.0)\n * Running on http://127.0.0.1:5001\n * Running on http://192.168.0.100:5001", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T12:16:38.000Z", "levelname": "INFO", "message": "\u001b[33mPress CTRL+C to quit\u001b[0m", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T12:16:47.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/", "payload": null}
+{"asctime": "2025-05-19T12:16:47.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 12:16:47] \"GET / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T12:16:47.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-19T12:16:47.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 12:16:47] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T12:16:52.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-19T12:16:52.000Z", "levelname": "INFO", "message": "Recommendation request for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-19T12:16:52.000Z", "levelname": "INFO", "message": "Generated recommendations for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": null}
+{"asctime": "2025-05-19T12:16:52.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 12:16:52] \"POST / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T12:16:52.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-19T12:16:52.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 12:16:52] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T12:37:57.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-19T12:37:57.000Z", "levelname": "INFO", "message": "Recommendation request for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-19T12:37:58.000Z", "levelname": "INFO", "message": "Generated recommendations for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": null}
+{"asctime": "2025-05-19T12:37:58.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 12:37:58] \"POST / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T12:37:58.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-19T12:37:58.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 12:37:58] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T12:41:50.000Z", "levelname": "INFO", "message": "Application starting", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T12:41:50.000Z", "levelname": "INFO", "message": "Successfully initialized Vault client", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T12:41:50.000Z", "levelname": "ERROR", "message": "Error fetching credentials from Vault: HTTPConnectionPool(host='vault', port=8200): Max retries exceeded with url: /v1/auth/token/lookup-self (Caused by NameResolutionError(\"<urllib3.connection.HTTPConnection object at 0x1278c7940>: Failed to resolve 'vault' ([Errno 8] nodename nor servname provided, or not known)\"))", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T12:43:41.000Z", "levelname": "INFO", "message": "Application starting", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T12:43:41.000Z", "levelname": "INFO", "message": "Successfully initialized Vault client", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T12:43:41.000Z", "levelname": "ERROR", "message": "Error fetching credentials from Vault: HTTPConnectionPool(host='vault', port=8200): Max retries exceeded with url: /v1/auth/token/lookup-self (Caused by NameResolutionError(\"<urllib3.connection.HTTPConnection object at 0x10cfc3940>: Failed to resolve 'vault' ([Errno 8] nodename nor servname provided, or not known)\"))", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T12:43:41.000Z", "levelname": "INFO", "message": "\u001b[31m\u001b[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.\u001b[0m\n * Running on all addresses (0.0.0.0)\n * Running on http://127.0.0.1:5001\n * Running on http://192.168.0.100:5001", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T12:43:41.000Z", "levelname": "INFO", "message": "\u001b[33mPress CTRL+C to quit\u001b[0m", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T12:43:47.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/", "payload": null}
+{"asctime": "2025-05-19T12:43:47.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 12:43:47] \"GET / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T12:43:47.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-19T12:43:47.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 12:43:47] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T12:43:51.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-19T12:43:51.000Z", "levelname": "INFO", "message": "Recommendation request for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-19T12:43:51.000Z", "levelname": "INFO", "message": "Generated recommendations for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": null}
+{"asctime": "2025-05-19T12:43:51.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 12:43:51] \"POST / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T12:43:51.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-19T12:43:51.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 12:43:51] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T12:45:13.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=naruto"}
+{"asctime": "2025-05-19T12:45:13.000Z", "levelname": "INFO", "message": "Recommendation request for anime: naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=naruto"}
+{"asctime": "2025-05-19T12:45:14.000Z", "levelname": "INFO", "message": "Generated recommendations for anime: naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": null}
+{"asctime": "2025-05-19T12:45:14.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 12:45:14] \"POST / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T12:45:14.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-19T12:45:14.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 12:45:14] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T13:19:11.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=blackcover"}
+{"asctime": "2025-05-19T13:19:11.000Z", "levelname": "INFO", "message": "Recommendation request for anime: blackcover", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=blackcover"}
+{"asctime": "2025-05-19T13:19:12.000Z", "levelname": "INFO", "message": "Generated recommendations for anime: blackcover", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": null}
+{"asctime": "2025-05-19T13:19:12.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 13:19:12] \"POST / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T13:19:12.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-19T13:19:12.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 13:19:12] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T17:42:54.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/", "payload": null}
+{"asctime": "2025-05-19T17:42:54.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 17:42:54] \"GET / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T17:42:54.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-19T17:42:54.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 17:42:54] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T17:42:54.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/apple-touch-icon-precomposed.png", "payload": null}
+{"asctime": "2025-05-19T17:42:54.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 17:42:54] \"\u001b[33mGET /apple-touch-icon-precomposed.png HTTP/1.1\u001b[0m\" 404 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T17:42:55.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/apple-touch-icon.png", "payload": null}
+{"asctime": "2025-05-19T17:42:55.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 17:42:55] \"\u001b[33mGET /apple-touch-icon.png HTTP/1.1\u001b[0m\" 404 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T17:43:00.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-19T17:43:00.000Z", "levelname": "INFO", "message": "Recommendation request for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-19T17:43:01.000Z", "levelname": "INFO", "message": "Generated recommendations for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": null}
+{"asctime": "2025-05-19T17:43:01.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 17:43:01] \"POST / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T17:43:01.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-19T17:43:01.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 17:43:01] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T18:13:45.000Z", "levelname": "INFO", "message": "Application starting", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T18:13:45.000Z", "levelname": "INFO", "message": "Successfully initialized Vault client", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T18:13:45.000Z", "levelname": "ERROR", "message": "Error fetching credentials from Vault: HTTPConnectionPool(host='vault', port=8200): Max retries exceeded with url: /v1/auth/token/lookup-self (Caused by NameResolutionError(\"<urllib3.connection.HTTPConnection object at 0x1172c38e0>: Failed to resolve 'vault' ([Errno 8] nodename nor servname provided, or not known)\"))", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T18:13:45.000Z", "levelname": "INFO", "message": "\u001b[31m\u001b[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.\u001b[0m\n * Running on all addresses (0.0.0.0)\n * Running on http://127.0.0.1:5001\n * Running on http://192.168.0.100:5001", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T18:13:45.000Z", "levelname": "INFO", "message": "\u001b[33mPress CTRL+C to quit\u001b[0m", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T18:13:50.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/", "payload": null}
+{"asctime": "2025-05-19T18:13:50.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 18:13:50] \"GET / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T18:13:50.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-19T18:13:50.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 18:13:50] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T18:13:54.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/", "payload": null}
+{"asctime": "2025-05-19T18:13:54.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 18:13:54] \"GET / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T18:13:54.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-19T18:13:54.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 18:13:54] \"GET /static/style.css HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T18:40:39.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/", "payload": null}
+{"asctime": "2025-05-19T18:40:39.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 18:40:39] \"GET / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T18:40:39.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-19T18:40:39.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 18:40:39] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T19:12:45.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-19T19:12:45.000Z", "levelname": "INFO", "message": "Recommendation request for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-19T19:12:46.000Z", "levelname": "INFO", "message": "Generated recommendations for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": null}
+{"asctime": "2025-05-19T19:12:46.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 19:12:46] \"POST / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T19:12:46.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-19T19:12:46.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 19:12:46] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T19:30:00.000Z", "levelname": "INFO", "message": "Test log entry", "remote_addr": "127.0.0.1", "method": "GET", "path": "/test", "payload": "test=true"}
+{"asctime": "2025-05-19T19:24:39.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/", "payload": null}
+{"asctime": "2025-05-19T19:24:39.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 19:24:39] \"GET / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T19:24:39.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-19T19:24:39.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 19:24:39] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T19:27:24.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-19T19:27:24.000Z", "levelname": "INFO", "message": "Recommendation request for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-19T19:27:25.000Z", "levelname": "INFO", "message": "Generated recommendations for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": null}
+{"asctime": "2025-05-19T19:27:25.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 19:27:25] \"POST / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T19:27:25.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-19T19:27:25.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 19:27:25] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T19:30:00.000Z", "levelname": "INFO", "message": "Test log entry", "remote_addr": "127.0.0.1", "method": "GET", "path": "/test", "payload": "test=true"}
+{"asctime": "2025-05-19T19:44:13.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-19T19:44:13.000Z", "levelname": "INFO", "message": "Recommendation request for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-19T19:44:14.000Z", "levelname": "INFO", "message": "Generated recommendations for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": null}
+{"asctime": "2025-05-19T19:44:14.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 19:44:14] \"POST / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T19:44:14.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-19T19:44:14.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 19:44:14] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T19:59:26.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/", "payload": null}
+{"asctime": "2025-05-19T19:59:26.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 19:59:26] \"GET / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T19:59:26.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-19T19:59:26.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 19:59:26] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T20:41:53.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/", "payload": null}
+{"asctime": "2025-05-19T20:41:53.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 20:41:53] \"GET / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T20:41:53.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-19T20:41:53.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 20:41:53] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T20:41:53.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-19T20:41:53.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 20:41:53] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T20:42:21.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-19T20:42:21.000Z", "levelname": "INFO", "message": "Recommendation request for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-19T20:42:22.000Z", "levelname": "INFO", "message": "Generated recommendations for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": null}
+{"asctime": "2025-05-19T20:42:22.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 20:42:22] \"POST / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T20:42:22.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-19T20:42:22.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 20:42:22] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T20:58:19.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-19T20:58:19.000Z", "levelname": "INFO", "message": "Recommendation request for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-19T20:58:20.000Z", "levelname": "INFO", "message": "Generated recommendations for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": null}
+{"asctime": "2025-05-19T20:58:20.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 20:58:20] \"POST / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T20:58:20.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-19T20:58:20.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 20:58:20] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T21:09:37.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-19T21:09:37.000Z", "levelname": "INFO", "message": "Recommendation request for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-19T21:09:37.000Z", "levelname": "INFO", "message": "Generated recommendations for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": null}
+{"asctime": "2025-05-19T21:09:37.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 21:09:37] \"POST / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-19T21:09:37.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-19T21:09:37.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [19/May/2025 21:09:37] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T17:58:04.000Z", "levelname": "INFO", "message": "Application starting", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T17:58:04.000Z", "levelname": "INFO", "message": "Successfully initialized Vault client", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T17:58:04.000Z", "levelname": "ERROR", "message": "Error fetching credentials from Vault: HTTPConnectionPool(host='vault', port=8200): Max retries exceeded with url: /v1/auth/token/lookup-self (Caused by NameResolutionError(\"<urllib3.connection.HTTPConnection object at 0x1175c3940>: Failed to resolve 'vault' ([Errno 8] nodename nor servname provided, or not known)\"))", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T17:58:04.000Z", "levelname": "INFO", "message": "\u001b[31m\u001b[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.\u001b[0m\n * Running on all addresses (0.0.0.0)\n * Running on http://127.0.0.1:5001\n * Running on http://192.168.0.100:5001", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T17:58:04.000Z", "levelname": "INFO", "message": "\u001b[33mPress CTRL+C to quit\u001b[0m", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T17:58:22.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/", "payload": null}
+{"asctime": "2025-05-20T17:58:22.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 17:58:22] \"GET / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T17:58:22.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-20T17:58:22.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 17:58:22] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T17:58:28.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-20T17:58:28.000Z", "levelname": "INFO", "message": "Recommendation request for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-20T17:58:28.000Z", "levelname": "INFO", "message": "Generated recommendations for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": null}
+{"asctime": "2025-05-20T17:58:28.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 17:58:28] \"POST / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T17:58:28.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-20T17:58:28.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 17:58:28] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T17:59:22.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=naruto"}
+{"asctime": "2025-05-20T17:59:22.000Z", "levelname": "INFO", "message": "Recommendation request for anime: naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=naruto"}
+{"asctime": "2025-05-20T17:59:23.000Z", "levelname": "INFO", "message": "Generated recommendations for anime: naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": null}
+{"asctime": "2025-05-20T17:59:23.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 17:59:23] \"POST / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T17:59:23.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-20T17:59:23.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 17:59:23] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T18:10:42.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-20T18:10:42.000Z", "levelname": "INFO", "message": "Recommendation request for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-20T18:10:42.000Z", "levelname": "INFO", "message": "Generated recommendations for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": null}
+{"asctime": "2025-05-20T18:10:42.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 18:10:42] \"POST / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T18:10:42.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-20T18:10:42.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 18:10:42] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T18:15:56.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=naruto"}
+{"asctime": "2025-05-20T18:15:56.000Z", "levelname": "INFO", "message": "Recommendation request for anime: naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=naruto"}
+{"asctime": "2025-05-20T18:15:56.000Z", "levelname": "INFO", "message": "Generated recommendations for anime: naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": null}
+{"asctime": "2025-05-20T18:15:56.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 18:15:56] \"POST / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T18:15:56.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-20T18:15:56.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 18:15:56] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T18:33:39.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-20T18:33:39.000Z", "levelname": "INFO", "message": "Recommendation request for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-20T18:33:40.000Z", "levelname": "INFO", "message": "Generated recommendations for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": null}
+{"asctime": "2025-05-20T18:33:40.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 18:33:40] \"POST / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T18:33:40.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-20T18:33:40.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 18:33:40] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T18:33:57.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=naruto"}
+{"asctime": "2025-05-20T18:33:57.000Z", "levelname": "INFO", "message": "Recommendation request for anime: naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=naruto"}
+{"asctime": "2025-05-20T18:33:57.000Z", "levelname": "INFO", "message": "Generated recommendations for anime: naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": null}
+{"asctime": "2025-05-20T18:33:57.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 18:33:57] \"POST / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T18:33:57.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-20T18:33:57.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 18:33:57] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T18:35:42.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=naruto"}
+{"asctime": "2025-05-20T18:35:42.000Z", "levelname": "INFO", "message": "Recommendation request for anime: naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=naruto"}
+{"asctime": "2025-05-20T18:35:43.000Z", "levelname": "INFO", "message": "Generated recommendations for anime: naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": null}
+{"asctime": "2025-05-20T18:35:43.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 18:35:43] \"POST / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T18:35:43.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-20T18:35:43.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 18:35:43] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T18:42:55.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/", "payload": null}
+{"asctime": "2025-05-20T18:42:55.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 18:42:55] \"GET / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T18:42:55.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-20T18:42:55.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 18:42:55] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T18:43:27.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-20T18:43:27.000Z", "levelname": "INFO", "message": "Recommendation request for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-20T18:43:27.000Z", "levelname": "INFO", "message": "Generated recommendations for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": null}
+{"asctime": "2025-05-20T18:43:27.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 18:43:27] \"POST / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T18:43:27.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-20T18:43:27.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 18:43:27] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T18:44:18.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=black"}
+{"asctime": "2025-05-20T18:44:18.000Z", "levelname": "INFO", "message": "Recommendation request for anime: black", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=black"}
+{"asctime": "2025-05-20T18:44:18.000Z", "levelname": "INFO", "message": "Generated recommendations for anime: black", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": null}
+{"asctime": "2025-05-20T18:44:18.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 18:44:18] \"POST / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T18:44:18.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-20T18:44:18.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 18:44:18] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T18:51:37.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=purnendu"}
+{"asctime": "2025-05-20T18:51:37.000Z", "levelname": "INFO", "message": "Recommendation request for anime: purnendu", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=purnendu"}
+{"asctime": "2025-05-20T18:51:37.000Z", "levelname": "INFO", "message": "Generated recommendations for anime: purnendu", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": null}
+{"asctime": "2025-05-20T18:51:37.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 18:51:37] \"POST / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T18:51:37.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-20T18:51:37.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 18:51:37] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T18:53:27.000Z", "levelname": "INFO", "message": "Application starting", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T18:53:27.000Z", "levelname": "INFO", "message": "Successfully initialized Vault client", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T18:53:27.000Z", "levelname": "ERROR", "message": "Error fetching credentials from Vault: HTTPConnectionPool(host='vault', port=8200): Max retries exceeded with url: /v1/auth/token/lookup-self (Caused by NameResolutionError(\"<urllib3.connection.HTTPConnection object at 0x10f7c3940>: Failed to resolve 'vault' ([Errno 8] nodename nor servname provided, or not known)\"))", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T18:53:40.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/", "payload": null}
+{"asctime": "2025-05-20T18:53:40.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 18:53:40] \"GET / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T18:53:40.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-20T18:53:40.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 18:53:40] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T18:53:40.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-20T18:53:40.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 18:53:40] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T18:53:46.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Kunal"}
+{"asctime": "2025-05-20T18:53:46.000Z", "levelname": "INFO", "message": "Recommendation request for anime: Kunal", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Kunal"}
+{"asctime": "2025-05-20T18:53:46.000Z", "levelname": "INFO", "message": "Generated recommendations for anime: Kunal", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": null}
+{"asctime": "2025-05-20T18:53:46.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 18:53:46] \"POST / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T18:53:46.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-20T18:53:46.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 18:53:46] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T19:05:07.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=naval"}
+{"asctime": "2025-05-20T19:05:07.000Z", "levelname": "INFO", "message": "Recommendation request for anime: naval", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=naval"}
+{"asctime": "2025-05-20T19:05:07.000Z", "levelname": "INFO", "message": "Generated recommendations for anime: naval", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": null}
+{"asctime": "2025-05-20T19:05:07.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 19:05:07] \"POST / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T19:05:07.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-20T19:05:07.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 19:05:07] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T19:14:50.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/", "payload": null}
+{"asctime": "2025-05-20T19:14:50.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 19:14:50] \"GET / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T19:14:50.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-20T19:14:50.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 19:14:50] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T19:15:05.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/", "payload": null}
+{"asctime": "2025-05-20T19:15:05.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 19:15:05] \"GET / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T19:15:05.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-20T19:15:05.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 19:15:05] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T19:15:20.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-20T19:15:20.000Z", "levelname": "INFO", "message": "Recommendation request for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-20T19:15:21.000Z", "levelname": "INFO", "message": "Generated recommendations for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": null}
+{"asctime": "2025-05-20T19:15:21.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 19:15:21] \"POST / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T19:15:21.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-20T19:15:21.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 19:15:21] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T19:15:47.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=naruto"}
+{"asctime": "2025-05-20T19:15:47.000Z", "levelname": "INFO", "message": "Recommendation request for anime: naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=naruto"}
+{"asctime": "2025-05-20T19:15:48.000Z", "levelname": "INFO", "message": "Generated recommendations for anime: naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": null}
+{"asctime": "2025-05-20T19:15:48.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 19:15:48] \"POST / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T19:15:48.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-20T19:15:48.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 19:15:48] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T19:31:58.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-20T19:31:58.000Z", "levelname": "INFO", "message": "Recommendation request for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-20T19:31:59.000Z", "levelname": "INFO", "message": "Generated recommendations for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": null}
+{"asctime": "2025-05-20T19:31:59.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 19:31:59] \"POST / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T19:31:59.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-20T19:31:59.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 19:31:59] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T19:36:16.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=naruto"}
+{"asctime": "2025-05-20T19:36:16.000Z", "levelname": "INFO", "message": "Recommendation request for anime: naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=naruto"}
+{"asctime": "2025-05-20T19:36:17.000Z", "levelname": "INFO", "message": "Generated recommendations for anime: naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": null}
+{"asctime": "2025-05-20T19:36:17.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 19:36:17] \"POST / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T19:36:17.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-20T19:36:17.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 19:36:17] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T19:36:45.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/", "payload": null}
+{"asctime": "2025-05-20T19:36:45.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 19:36:45] \"GET / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T19:36:45.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-20T19:36:45.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 19:36:45] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T19:36:49.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/", "payload": null}
+{"asctime": "2025-05-20T19:36:49.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 19:36:49] \"GET / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T19:36:49.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-20T19:36:49.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 19:36:49] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T19:37:12.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=black"}
+{"asctime": "2025-05-20T19:37:12.000Z", "levelname": "INFO", "message": "Recommendation request for anime: black", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=black"}
+{"asctime": "2025-05-20T19:37:12.000Z", "levelname": "INFO", "message": "Generated recommendations for anime: black", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": null}
+{"asctime": "2025-05-20T19:37:12.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 19:37:12] \"POST / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T19:37:12.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-20T19:37:12.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 19:37:12] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T21:07:18.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=naruto"}
+{"asctime": "2025-05-20T21:07:18.000Z", "levelname": "INFO", "message": "Recommendation request for anime: naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=naruto"}
+{"asctime": "2025-05-20T21:07:19.000Z", "levelname": "INFO", "message": "Generated recommendations for anime: naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": null}
+{"asctime": "2025-05-20T21:07:19.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 21:07:19] \"POST / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T21:07:19.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-20T21:07:19.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 21:07:19] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T21:08:16.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=black"}
+{"asctime": "2025-05-20T21:08:16.000Z", "levelname": "INFO", "message": "Recommendation request for anime: black", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=black"}
+{"asctime": "2025-05-20T21:08:16.000Z", "levelname": "INFO", "message": "Generated recommendations for anime: black", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": null}
+{"asctime": "2025-05-20T21:08:16.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 21:08:16] \"POST / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-20T21:08:16.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-20T21:08:16.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 21:08:16] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}

@@ -1,0 +1,11 @@
+venv/
+artifacts/raw/
+artifacts/processed/
+artifacts/model/
+artifacts/weights/
+artifacts/model_checkpoint/
+MLOPS_PROJECT_2.egg-info/
+filebeat-8.13.4-darwin-x86_64/
+/filebeat/filebeat.yml
+/pipeline/__pycache__
+clean-repo/

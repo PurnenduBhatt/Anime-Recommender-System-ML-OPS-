@@ -1,0 +1,17 @@
+# 3. LOGSTASH CONFIGURATION
+# Save this to ./logstash/config/logstash.yml
+# This is the EXACT content you should use
+
+http.host: "0.0.0.0"
+xpack.monitoring.elasticsearch.hosts: [ "http://elasticsearch:9200" ]
+
+# Enhanced settings for troubleshooting
+log.level: debug
+config.debug: true
+config.reload.automatic: true
+config.reload.interval: 30s
+log.format: json
+
+pipeline.workers: 2
+pipeline.batch.size: 125
+pipeline.batch.delay: 50
