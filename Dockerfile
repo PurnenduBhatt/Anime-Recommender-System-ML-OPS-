@@ -47,7 +47,7 @@ COPY config/filebeat.yml /etc/filebeat/filebeat.yml
 RUN chmod go-w /etc/filebeat/filebeat.yml
 
 # Run training pipeline
-RUN python -m pipeline/training_pipeline
+RUN python -m pipeline/training_pipeline.py
 
 # Create logs directory
 RUN mkdir -p /app/logs && chmod 777 /app/logs
