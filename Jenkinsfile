@@ -87,23 +87,22 @@ pipeline {
                     pip install tensorflow==2.16.2 || pip install tensorflow
 
                     # Explicitly install/upgrade DVC and its GCS-related dependencies.
-                    # We'll use specific versions if generic upgrade fails, but start with upgrade.
                     echo "Attempting to upgrade DVC and GCS dependencies..."
                     pip install --upgrade dvc dvc-gs gcsfs google-cloud-storage google-auth-oauthlib
                     
-                    echo "Installed DVC and GCS-related package versions:"
-                    pip show dvc || true
-                    pip show dvc-gs || true
-                    pip show gcsfs || true
-                    pip show google-cloud-storage || true
-                    pip show google-auth-oauthlib || true
+                    echo "--- START DVC/GCS Package Versions ---"
+                    pip show dvc || echo "dvc not found"
+                    pip show dvc-gs || echo "dvc-gs not found"
+                    pip show gcsfs || echo "gcsfs not found"
+                    pip show google-cloud-storage || echo "google-cloud-storage not found"
+                    pip show google-auth-oauthlib || echo "google-auth-oauthlib not found"
+                    echo "--- END DVC/GCS Package Versions ---"
                     
                     pip install pytest pytest-cov flake8
                     '''
                 }
             }
         }
-
         stage('Static Code Analysis') {
             steps {
                 script {
@@ -131,7 +130,7 @@ pipeline {
                         withCredentials([file(credentialsId:'gcp-key', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
                             sh '''
                             . ${VENV_DIR}/bin/activate
-                            echo "Attempting DVC pull with environment variable GOOGLE_APPLICATION_CREDENTIALS set to: $GOOGLE_APPLICATION_CREDENTIALS"
+                            echo "Attempting DVC pull with environment variable GOOGLE_APPLICATION_CREDENTIALS set to: ****"
                             dvc pull || {
                                 echo "DVC pull failed with an error."
                                 exit 1 # Fail the stage if DVC pull fails
@@ -143,6 +142,7 @@ pipeline {
                 }
             }
         }
+
         stage('Run Tests') {
             when {
                 expression { return params.RUN_TESTS }
@@ -168,7 +168,7 @@ pipeline {
                     docker container prune -f
 
                     # Remove dangling (untagged) images and old versions of the app
-                    docker images --filter "reference=kunal2221/mlops-app" --format "{{.Repository}}:{{.Tag}}" | grep -v ":${BUILD_NUMBER}" | xargs -r docker rmi -f
+                    docker images --filter "reference=${DOCKER_IMAGE}" --format "{{.Repository}}:{{.Tag}}" | grep -v ":${BUILD_NUMBER}" | xargs -r docker rmi -f
 
                     # Also remove dangling images
                     docker image prune -f
@@ -240,6 +240,7 @@ pipeline {
                         # Install vault CLI if needed
                         if ! command -v vault &> /dev/null; then
                             echo "Installing Vault CLI..."
+                            # Note: Hardcoding version 1.15.0 - ensure it's compatible or adjust
                             curl -fsSL https://releases.hashicorp.com/vault/1.15.0/vault_1.15.0_linux_amd64.zip -o vault.zip
                             unzip vault.zip
                             mv vault /usr/local/bin/
