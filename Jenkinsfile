@@ -90,19 +90,31 @@ pipeline {
                     echo "Attempting to upgrade DVC and GCS dependencies..."
                     pip install --upgrade dvc dvc-gs gcsfs google-cloud-storage google-auth-oauthlib
                     
-                    echo "--- START DVC/GCS Package Versions ---"
-                    pip show dvc || echo "dvc not found"
-                    pip show dvc-gs || echo "dvc-gs not found"
-                    pip show gcsfs || echo "gcsfs not found"
-                    pip show google-cloud-storage || echo "google-cloud-storage not found"
-                    pip show google-auth-oauthlib || echo "google-auth-oauthlib not found"
-                    echo "--- END DVC/GCS Package Versions ---"
-                    
                     pip install pytest pytest-cov flake8
                     '''
                 }
             }
         }
+
+        // --- NEW STAGE TO VERIFY PACKAGE VERSIONS ---
+        stage("Verify Package Versions") {
+            steps {
+                script {
+                    echo "--- START DVC/GCS Package Versions ---"
+                    sh '''
+                    . ${VENV_DIR}/bin/activate
+                    pip show dvc || echo "dvc not found"
+                    pip show dvc-gs || echo "dvc-gs not found"
+                    pip show gcsfs || echo "gcsfs not found"
+                    pip show google-cloud-storage || echo "google-cloud-storage not found"
+                    pip show google-auth-oauthlib || echo "google-auth-oauthlib not found"
+                    '''
+                    echo "--- END DVC/GCS Package Versions ---"
+                }
+            }
+        }
+        // --- END NEW STAGE ---
+
         stage('Static Code Analysis') {
             steps {
                 script {
