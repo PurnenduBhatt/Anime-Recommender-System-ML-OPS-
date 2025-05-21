@@ -250,7 +250,7 @@ stage("Creating Virtual Environment") {
                 script {
                     echo '🔐 Setting up Vault with Docker Hub credentials...'
                     // We'll use the Jenkins credentials one last time to set up Vault
-                    withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
+                    withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'Docker123', usernameVariable: 'kunal2221')]) {
                         sh '''
                         # Install vault CLI if needed
                         if ! command -v vault &> /dev/null; then
@@ -274,7 +274,7 @@ stage("Creating Virtual Environment") {
                         vault secrets enable -path=secret kv || echo "KV secrets engine already enabled"
                         
                         # Store Docker Hub credentials in Vault
-                        vault kv put secret/dockerhub username=${DOCKER_USERNAME} password=${DOCKER_PASSWORD}
+                        vault kv put secret/dockerhub username=${kunal2221} password=${Docker123}
                         
                         echo "✅ Docker Hub credentials stored in Vault"
                         '''
@@ -297,7 +297,7 @@ stage("Creating Virtual Environment") {
                     DOCKER_PASSWORD=$(vault kv get -field=password secret/dockerhub)
                     
                     # Login to Docker Hub
-                    echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_USERNAME} --password-stdin
+                    echo ${Docker123} | docker login -u ${kunal2221} --password-stdin
                     
                     # Push Docker images
                     docker push ${DOCKER_IMAGE}:latest
