@@ -245,6 +245,7 @@ stage("Creating Virtual Environment") {
             }
         }
 
+       
         stage('Initialize Vault with Docker Credentials') {
             steps {
                 script {
@@ -252,29 +253,37 @@ stage("Creating Virtual Environment") {
                     // We'll use the Jenkins credentials one last time to set up Vault
                     withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'Docker123', usernameVariable: 'kunal2221')]) {
                         sh '''
-                        # Install vault CLI if needed
-                        if ! command -v vault &> /dev/null; then
-                            echo "Installing Vault CLI..."
-                            # Note: Hardcoding version 1.15.0 - ensure it's compatible or adjust
+                        # Define the path where vault will be extracted and used
+                        # Using WORKSPACE ensures it's within the current job's directory
+                        export VAULT_BIN_PATH="${WORKSPACE}/vault"
+                        
+                        # Install vault CLI if needed (locally in workspace)
+                        # Check if the local vault executable exists and is runnable
+                        if ! command -v "${VAULT_BIN_PATH}" &> /dev/null; then
+                            echo "Installing Vault CLI locally..."
+                            # Download to the workspace
+                            curl -fsSL https://releases.hashicorp.com/vault/1.15.0/vault_1.15.0_linux_amd64.zip -o "${WORKSPACE}/vault.zip"
                             
-                            # Add this line to forcefully remove any existing vault executable
-                            sudo rm -f /usr/local/bin/vault || true
+                            # Unzip directly into the workspace, overwrite if it already exists
+                            # The -d "${WORKSPACE}" extracts content directly into the workspace root
+                            unzip -o "${WORKSPACE}/vault.zip" -d "${WORKSPACE}"
                             
-                            curl -fsSL https://releases.hashicorp.com/vault/1.15.0/vault_1.15.0_linux_amd64.zip -o vault.zip
-                            unzip -o vault.zip
-                            sudo mv vault /usr/local/bin/  # Use sudo for mv as well
-                            rm vault.zip
+                            # Make the extracted vault executable
+                            chmod +x "${VAULT_BIN_PATH}" 
+                            
+                            # Clean up the zip file
+                            rm "${WORKSPACE}/vault.zip"
                         fi
                         
                         # Configure Vault client
                         export VAULT_ADDR=${VAULT_ADDR}
                         export VAULT_TOKEN=${VAULT_TOKEN}
                         
-                        # Enable key-value secrets engine if not already enabled
-                        vault secrets enable -path=secret kv || echo "KV secrets engine already enabled"
+                        # Use the locally installed vault executable via its full path
+                        "${VAULT_BIN_PATH}" secrets enable -path=secret kv || echo "KV secrets engine already enabled"
                         
-                        # Store Docker Hub credentials in Vault
-                        vault kv put secret/dockerhub username=${kunal2221} password=${Docker123}
+                        # Store Docker Hub credentials in Vault using the local vault executable
+                        "${VAULT_BIN_PATH}" kv put secret/dockerhub username=${kunal2221} password=${Docker123}
                         
                         echo "✅ Docker Hub credentials stored in Vault"
                         '''
@@ -282,7 +291,6 @@ stage("Creating Virtual Environment") {
                 }
             }
         }
-
         stage('Push to Docker Hub using Vault Credentials') {
             steps {
                 script {
