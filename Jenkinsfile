@@ -229,7 +229,7 @@ stage("Creating Virtual Environment") {
             }
         }
 
-stage('Start ELK and Vault Stack') {
+        stage('Start ELK and Vault Stack') {
             steps {
                 script {
                     echo '📦 Starting ELK + Vault stack via Docker Compose...'
@@ -245,7 +245,7 @@ stage('Start ELK and Vault Stack') {
             }
         }
 
-stage('Initialize Vault with Docker Credentials') {
+        stage('Initialize Vault with Docker Credentials') {
             steps {
                 script {
                     echo '🔐 Setting up Vault with Docker Hub credentials...'
@@ -256,10 +256,13 @@ stage('Initialize Vault with Docker Credentials') {
                         if ! command -v vault &> /dev/null; then
                             echo "Installing Vault CLI..."
                             # Note: Hardcoding version 1.15.0 - ensure it's compatible or adjust
+                            
+                            # Add this line to forcefully remove any existing vault executable
+                            sudo rm -f /usr/local/bin/vault || true
+                            
                             curl -fsSL https://releases.hashicorp.com/vault/1.15.0/vault_1.15.0_linux_amd64.zip -o vault.zip
-                            # ADDED -o FLAG HERE TO OVERWRITE WITHOUT PROMPT
                             unzip -o vault.zip
-                            mv vault /usr/local/bin/
+                            sudo mv vault /usr/local/bin/  # Use sudo for mv as well
                             rm vault.zip
                         fi
                         
@@ -278,8 +281,7 @@ stage('Initialize Vault with Docker Credentials') {
                     }
                 }
             }
-        }
-        stage('Push to Docker Hub using Vault Credentials') {
+        }        stage('Push to Docker Hub using Vault Credentials') {
             steps {
                 script {
                     echo '🚀 Pushing Docker image using credentials from Vault...'
