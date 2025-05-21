@@ -281,7 +281,9 @@ stage("Creating Virtual Environment") {
                     }
                 }
             }
-        }        stage('Push to Docker Hub using Vault Credentials') {
+        }
+
+        stage('Push to Docker Hub using Vault Credentials') {
             steps {
                 script {
                     echo '🚀 Pushing Docker image using credentials from Vault...'
