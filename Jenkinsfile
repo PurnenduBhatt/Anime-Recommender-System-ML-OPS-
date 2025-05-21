@@ -229,11 +229,14 @@ stage("Creating Virtual Environment") {
             }
         }
 
-        stage('Start ELK and Vault Stack') {
+stage('Start ELK and Vault Stack') {
             steps {
                 script {
                     echo '📦 Starting ELK + Vault stack via Docker Compose...'
                     sh '''
+                    # Stop and remove any pre-existing 'vault' container to prevent "Conflict" errors
+                    docker rm -f vault || true
+                    
                     docker-compose down || true
                     docker-compose up -d
                     sleep 30  # Wait for containers to be ready
