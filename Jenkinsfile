@@ -68,7 +68,7 @@ pipeline {
             }
         }
 
-        stage("Creating Virtual Environment") {
+stage("Creating Virtual Environment") {
             steps {
                 script {
                     echo 'Creating virtual environment...'
@@ -87,15 +87,15 @@ pipeline {
                     pip install tensorflow==2.16.2 || pip install tensorflow
 
                     # Explicitly install/upgrade DVC and its GCS-related dependencies.
-                    echo "Attempting to upgrade DVC and GCS dependencies..."
-                    pip install --upgrade dvc dvc-gs gcsfs google-cloud-storage google-auth-oauthlib
+                    echo "Attempting to install/upgrade DVC and GCS dependencies with specific gcsfs version..."
+                    # Pin gcsfs to a known stable version
+                    pip install --upgrade dvc dvc-gs "gcsfs==2024.5.0" google-cloud-storage google-auth-oauthlib
                     
                     pip install pytest pytest-cov flake8
                     '''
                 }
             }
         }
-
         // --- NEW STAGE TO VERIFY PACKAGE VERSIONS ---
         stage("Verify Package Versions") {
             steps {
