@@ -83,7 +83,10 @@ pipeline {
                     pip install --upgrade pip
                     pip install -e .
                     pip install tensorflow==2.16.2 || pip install tensorflow
-                    pip install dvc pytest pytest-cov flake8
+                    # --- START: Modified section for DVC and GCS dependencies ---
+                    pip install --upgrade dvc dvc-gs gcsfs # Explicitly upgrade these
+                    pip install pytest pytest-cov flake8
+                    # --- END: Modified section ---
                     '''
                 }
             }
