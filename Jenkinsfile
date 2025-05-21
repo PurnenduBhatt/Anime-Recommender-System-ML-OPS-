@@ -245,7 +245,7 @@ stage('Start ELK and Vault Stack') {
             }
         }
 
-        stage('Initialize Vault with Docker Credentials') {
+stage('Initialize Vault with Docker Credentials') {
             steps {
                 script {
                     echo '🔐 Setting up Vault with Docker Hub credentials...'
@@ -257,7 +257,8 @@ stage('Start ELK and Vault Stack') {
                             echo "Installing Vault CLI..."
                             # Note: Hardcoding version 1.15.0 - ensure it's compatible or adjust
                             curl -fsSL https://releases.hashicorp.com/vault/1.15.0/vault_1.15.0_linux_amd64.zip -o vault.zip
-                            unzip vault.zip
+                            # ADDED -o FLAG HERE TO OVERWRITE WITHOUT PROMPT
+                            unzip -o vault.zip
                             mv vault /usr/local/bin/
                             rm vault.zip
                         fi
@@ -278,7 +279,6 @@ stage('Start ELK and Vault Stack') {
                 }
             }
         }
-
         stage('Push to Docker Hub using Vault Credentials') {
             steps {
                 script {
