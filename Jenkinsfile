@@ -81,12 +81,24 @@ pipeline {
                     python3.10 -m venv ${VENV_DIR}
                     . ${VENV_DIR}/bin/activate
                     pip install --upgrade pip
+
+                    # Install base project dependencies first
                     pip install -e .
                     pip install tensorflow==2.16.2 || pip install tensorflow
-                    # --- START: Modified section for DVC and GCS dependencies ---
-                    pip install --upgrade dvc dvc-gs gcsfs # Explicitly upgrade these
+
+                    # Explicitly install/upgrade DVC and its GCS-related dependencies.
+                    # We'll use specific versions if generic upgrade fails, but start with upgrade.
+                    echo "Attempting to upgrade DVC and GCS dependencies..."
+                    pip install --upgrade dvc dvc-gs gcsfs google-cloud-storage google-auth-oauthlib
+                    
+                    echo "Installed DVC and GCS-related package versions:"
+                    pip show dvc || true
+                    pip show dvc-gs || true
+                    pip show gcsfs || true
+                    pip show google-cloud-storage || true
+                    pip show google-auth-oauthlib || true
+                    
                     pip install pytest pytest-cov flake8
-                    # --- END: Modified section ---
                     '''
                 }
             }
@@ -119,14 +131,18 @@ pipeline {
                         withCredentials([file(credentialsId:'gcp-key', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
                             sh '''
                             . ${VENV_DIR}/bin/activate
-                            dvc pull || echo "DVC pull failed, continuing anyway"
+                            echo "Attempting DVC pull with environment variable GOOGLE_APPLICATION_CREDENTIALS set to: $GOOGLE_APPLICATION_CREDENTIALS"
+                            dvc pull || {
+                                echo "DVC pull failed with an error."
+                                exit 1 # Fail the stage if DVC pull fails
+                            }
+                            echo "DVC pull completed successfully."
                             '''
                         }
                     }
                 }
             }
         }
-
         stage('Run Tests') {
             when {
                 expression { return params.RUN_TESTS }
