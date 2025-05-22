@@ -336,37 +336,65 @@ pipeline {
                     echo "=== Updating Container Image ==="
                     kubectl set image deployment/ml-app ml-app-container=${DOCKER_IMAGE}:${DOCKER_TAG}
                     
-                    # Check deployment status with more detailed output
-                    echo "=== Checking Deployment Progress ==="
-                    kubectl get deployments ml-app -o wide
-                    kubectl describe deployment ml-app
+                    # Wait a bit for pods to start being created
+                    echo "=== Waiting for pods to be created ==="
+                    sleep 30
                     
-                    # Wait for rollout with extended timeout and better error handling
-                    echo "=== Waiting for Rollout (with 15-minute timeout) ==="
-                    timeout 900 kubectl rollout status deployment/ml-app --timeout=900s || {
-                        echo "❌ Deployment rollout failed or timed out. Investigating..."
-                        
-                        echo "=== Current Pod Status ==="
+                    # Monitor pod creation and status in real-time
+                    echo "=== Monitoring Pod Status ==="
+                    for i in {1..20}; do
+                        echo "--- Check $i/20 ---"
                         kubectl get pods -l app=ml-app -o wide
+                        kubectl get rs -l app=ml-app -o wide
                         
-                        echo "=== Pod Events ==="
-                        kubectl get events --sort-by=.metadata.creationTimestamp | tail -20
+                        # Get all events related to our app
+                        echo "--- Recent Events ---"
+                        kubectl get events --field-selector involvedObject.name!=ml-app --sort-by=.metadata.creationTimestamp | grep ml-app | tail -10 || echo "No ml-app events found"
                         
-                        echo "=== Pod Logs (if any pods exist) ==="
-                        for pod in $(kubectl get pods -l app=ml-app -o jsonpath='{.items[*].metadata.name}'); do
-                            echo "--- Logs for pod: $pod ---"
-                            kubectl logs $pod --previous || kubectl logs $pod || echo "No logs available for $pod"
-                            echo "--- Describe pod: $pod ---"
-                            kubectl describe pod $pod
-                        done
+                        # Check if any pods exist and get their details
+                        PODS=$(kubectl get pods -l app=ml-app -o jsonpath='{.items[*].metadata.name}' 2>/dev/null || echo "")
+                        if [ ! -z "$PODS" ]; then
+                            for pod in $PODS; do
+                                echo "--- Pod $pod Status ---"
+                                kubectl get pod $pod -o yaml | grep -A 5 -B 5 "phase\|containerStatuses\|conditions" || true
+                                
+                                echo "--- Pod $pod Events ---"
+                                kubectl describe pod $pod | grep -A 20 "Events:" || echo "No events for $pod"
+                                
+                                echo "--- Pod $pod Logs (if available) ---"
+                                kubectl logs $pod --previous 2>/dev/null || kubectl logs $pod 2>/dev/null || echo "No logs available for $pod"
+                            done
+                        else
+                            echo "No pods found with label app=ml-app"
+                        fi
                         
-                        echo "=== Deployment Details ==="
+                        sleep 15
+                    done
+                    
+                    # Final attempt to wait for rollout
+                    echo "=== Final Rollout Status Check ==="
+                    kubectl rollout status deployment/ml-app --timeout=60s || {
+                        echo "❌ Final deployment check failed. Getting comprehensive diagnostics..."
+                        
+                        echo "=== All Resources ==="
+                        kubectl get all -l app=ml-app -o wide
+                        
+                        echo "=== Deployment Description ==="
                         kubectl describe deployment ml-app
                         
-                        echo "=== ReplicaSet Details ==="
+                        echo "=== ReplicaSet Description ==="
                         kubectl describe rs -l app=ml-app
                         
-                        # Try to rollback to previous version
+                        echo "=== All Events (Last 50) ==="
+                        kubectl get events --sort-by=.metadata.creationTimestamp | tail -50
+                        
+                        echo "=== Node Resources ==="
+                        kubectl describe nodes | grep -A 5 -B 5 "Allocated resources"
+                        
+                        echo "=== Checking if image exists and is pullable ==="
+                        docker pull ${DOCKER_IMAGE}:${DOCKER_TAG} || echo "Image pull failed - this might be the issue"
+                        
+                        # Try to rollback
                         echo "=== Attempting Rollback ==="
                         kubectl rollout undo deployment/ml-app || echo "Rollback failed or no previous revision"
                         
