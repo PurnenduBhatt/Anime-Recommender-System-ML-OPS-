@@ -249,23 +249,23 @@ stage("Creating Virtual Environment") {
         stage('Vault') {
             steps {
                 script {
-                    // Safely remove existing 'vault' Docker container if it exists
+                    // Remove existing 'vault' Docker container if it exists
                     sh '''
                         if docker ps -a --format '{{.Names}}' | grep -q "^vault$"; then
                         docker rm -f vault
                         fi
                     '''
 
-                    // Download macOS version of Vault
+                    // Download macOS Vault binary and unzip it
                     sh '''
                         mkdir -p /tmp/vault-cli
                         curl -fsSL https://releases.hashicorp.com/vault/1.15.0/vault_1.15.0_darwin_amd64.zip -o /tmp/vault-cli/vault.zip
                         unzip -o /tmp/vault-cli/vault.zip -d /tmp/vault-cli
-                        mv -f /tmp/vault-cli/vault ${WORKSPACE}/vault
-                        chmod +x ${WORKSPACE}/vault
+                        mv -f /tmp/vault-cli/vault ${WORKSPACE}/vault-cli
+                        chmod +x ${WORKSPACE}/vault-cli
                     '''
 
-                    // Start Vault server in Docker
+                    // Start Vault server
                     sh '''
                         docker run -d --name vault -p 8200:8200 --cap-add=IPC_LOCK \
                         -e 'VAULT_DEV_ROOT_TOKEN_ID=root' \
@@ -273,20 +273,17 @@ stage("Creating Virtual Environment") {
                         hashicorp/vault
                     '''
 
-                    // Wait for Vault server to be ready
-                    sh 'sleep 5'
-
-                    // Enable KV secrets engine and store secrets
+                    // Wait and configure Vault
                     sh '''
+                        sleep 5
                         export VAULT_ADDR=http://127.0.0.1:8200
                         export VAULT_TOKEN=root
-                        ${WORKSPACE}/vault secrets enable -path=secret kv
-                        ${WORKSPACE}/vault kv put secret/mlopsproject username=kunal password=mlops
+                        ${WORKSPACE}/vault-cli secrets enable -path=secret kv
+                        ${WORKSPACE}/vault-cli kv put secret/mlopsproject username=kunal password=mlops
                     '''
                 }
             }
         }
-
         stage('Push to Docker Hub using Vault Credentials') {
             steps {
                 script {
