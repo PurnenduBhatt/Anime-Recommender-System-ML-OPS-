@@ -249,36 +249,37 @@ stage("Creating Virtual Environment") {
         stage('Vault') {
             steps {
                 script {
-                    // Remove existing 'vault' Docker container if it exists
                     sh '''
+                        # Remove existing Vault container if it exists
                         if docker ps -a --format '{{.Names}}' | grep -q "^vault$"; then
                         docker rm -f vault
                         fi
-                    '''
 
-                    // Download macOS Vault binary and unzip it
-                    sh '''
+                        # Download Vault CLI for macOS and set permissions
                         mkdir -p /tmp/vault-cli
                         curl -fsSL https://releases.hashicorp.com/vault/1.15.0/vault_1.15.0_darwin_amd64.zip -o /tmp/vault-cli/vault.zip
                         unzip -o /tmp/vault-cli/vault.zip -d /tmp/vault-cli
                         mv -f /tmp/vault-cli/vault ${WORKSPACE}/vault-cli
                         chmod +x ${WORKSPACE}/vault-cli
-                    '''
 
-                    // Start Vault server
-                    sh '''
+                        # Start Vault server
                         docker run -d --name vault -p 8200:8200 --cap-add=IPC_LOCK \
                         -e 'VAULT_DEV_ROOT_TOKEN_ID=root' \
                         -e 'VAULT_DEV_LISTEN_ADDRESS=0.0.0.0:8200' \
                         hashicorp/vault
-                    '''
 
-                    // Wait and configure Vault
-                    sh '''
+                        # Wait for Vault to be ready
                         sleep 5
+
                         export VAULT_ADDR=http://127.0.0.1:8200
                         export VAULT_TOKEN=root
+
+                        # Only enable KV secrets engine if not already enabled
+                        if ! curl -s -H "X-Vault-Token: $VAULT_TOKEN" $VAULT_ADDR/v1/sys/mounts | grep -q '"secret/":'; then
                         ${WORKSPACE}/vault-cli secrets enable -path=secret kv
+                        fi
+
+                        # Add credentials
                         ${WORKSPACE}/vault-cli kv put secret/mlopsproject username=kunal password=mlops
                     '''
                 }
