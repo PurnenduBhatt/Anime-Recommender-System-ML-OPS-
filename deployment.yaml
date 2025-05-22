@@ -3,20 +3,15 @@ kind: ConfigMap
 metadata:
   name: filebeat-config
 data:
-  filebeat.yml: |-
+  filebeat.yml: |
     filebeat.inputs:
     - type: log
       enabled: true
       paths:
-        - /app/logs/ml-app.log
-      json.keys_under_root: true
-      json.add_error_key: true
-      json.message_key: message
-      
+        - /app/logs/*.log
     output.logstash:
       hosts: ["logstash-service:5044"]
-      
-    logging.level: debug
+    logging.level: info
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -26,92 +21,108 @@ metadata:
     app: ml-app
 spec:
   replicas: 2
-  selector:
-    matchLabels:
-      app: ml-app
   strategy:
     type: RollingUpdate
     rollingUpdate:
+      maxUnavailable: 1
       maxSurge: 1
-      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: ml-app
   template:
     metadata:
       labels:
         app: ml-app
-      annotations:
-        prometheus.io/scrape: "true"
-        prometheus.io/path: "/metrics"
-        prometheus.io/port: "5000"
     spec:
       containers:
       - name: ml-app-container
-        image: kunal2221/mlops-app:v1.3
-        imagePullPolicy: Always
+        image: kunal2221/mlops-app:latest
         ports:
         - containerPort: 5000
+        env:
+        - name: PYTHONUNBUFFERED
+          value: "1"
         resources:
           requests:
-            memory: "256Mi"
-            cpu: "100m"
-          limits:
             memory: "512Mi"
-            cpu: "500m"
-        livenessProbe:
-          httpGet:
-            path: /health
-            port: 5000
-          initialDelaySeconds: 30
-          periodSeconds: 10
+            cpu: "250m"
+          limits:
+            memory: "2Gi"
+            cpu: "1000m"
+        # Updated readiness probe - more lenient timing
         readinessProbe:
           httpGet:
-            path: /health
+            path: /
             port: 5000
-          initialDelaySeconds: 5
-          periodSeconds: 5
-        env:
-        - name: LOG_LEVEL
-          value: "info"
-        - name: LOGSTASH_HOST  # Add environment variable for Logstash host
-          value: "logstash-service"
-        - name: LOGSTASH_PORT  # Add environment variable for Logstash port
-          value: "5044"
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 5
+        # Updated liveness probe - more lenient timing  
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 5000
+          initialDelaySeconds: 120
+          periodSeconds: 30
+          timeoutSeconds: 10
+          failureThreshold: 3
         volumeMounts:
-        - name: app-logs
+        - name: logs-volume
           mountPath: /app/logs
         - name: filebeat-config
           mountPath: /etc/filebeat
+      # Add init container to handle any pre-startup tasks
+      initContainers:
+      - name: init-logs
+        image: busybox:1.28
+        command: ['sh', '-c', 'mkdir -p /app/logs && chmod 777 /app/logs']
+        volumeMounts:
+        - name: logs-volume
+          mountPath: /app/logs
       volumes:
-      - name: app-logs
+      - name: logs-volume
         emptyDir: {}
       - name: filebeat-config
         configMap:
           name: filebeat-config
+      # Add tolerations and node affinity if needed
+      tolerations: []
+      affinity: {}
+      # Increase termination grace period
+      terminationGracePeriodSeconds: 60
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: ml-app-service
+  labels:
+    app: ml-app
 spec:
-  type: NodePort
   selector:
     app: ml-app
   ports:
-  - protocol: TCP
+  - name: http
     port: 80
     targetPort: 5000
-    nodePort: 30081
+    protocol: TCP
+  type: ClusterIP
 ---
-# Logstash Service for Kubernetes
 apiVersion: v1
 kind: Service
 metadata:
   name: logstash-service
+  labels:
+    app: logstash
 spec:
   selector:
     app: logstash
   ports:
-  - port: 5044
+  - name: beats
+    port: 5044
     targetPort: 5044
+    protocol: TCP
   type: ClusterIP
 ---
 apiVersion: autoscaling/v2
@@ -124,11 +135,30 @@ spec:
     kind: Deployment
     name: ml-app
   minReplicas: 2
-  maxReplicas: 5
+  maxReplicas: 10
   metrics:
   - type: Resource
     resource:
       name: cpu
       target:
         type: Utilization
+        averageUtilization: 70
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
         averageUtilization: 80
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 300
+      policies:
+      - type: Percent
+        value: 10
+        periodSeconds: 60
+    scaleUp:
+      stabilizationWindowSeconds: 60
+      policies:
+      - type: Percent
+        value: 50
+        periodSeconds: 60
