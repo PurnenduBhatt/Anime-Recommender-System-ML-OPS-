@@ -293,14 +293,14 @@ stage("Creating Virtual Environment") {
                     # Configure Vault client
                     export VAULT_ADDR=${VAULT_ADDR}
                     export VAULT_TOKEN=${VAULT_TOKEN}
-                    
-                    # Retrieve Docker Hub credentials from Vault
-                    DOCKER_USERNAME=$(vault kv get -field=username secret/dockerhub)
-                    DOCKER_PASSWORD=$(vault kv get -field=password secret/dockerhub)
-                    
-                    # Login to Docker Hub
-                    echo ${Docker123} | docker login -u ${kunal2221} --password-stdin
-                    
+
+                    # Retrieve Docker Hub credentials from Vault using the correct binary
+                    DOCKER_USERNAME=$(${WORKSPACE}/vault-cli kv get -field=username secret/dockerhub)
+                    DOCKER_PASSWORD=$(${WORKSPACE}/vault-cli kv get -field=password secret/dockerhub)
+
+                    # Login to Docker Hub using retrieved credentials
+                    echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+
                     # Push Docker images
                     docker push ${DOCKER_IMAGE}:latest
                     docker push ${DOCKER_IMAGE}:${DOCKER_TAG}
@@ -308,6 +308,7 @@ stage("Creating Virtual Environment") {
                 }
             }
         }
+
         
         stage('Deploy to Development') {
             steps {
