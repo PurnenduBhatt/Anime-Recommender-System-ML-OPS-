@@ -318,9 +318,64 @@ pipeline {
                 script {
                     echo '🚀 Deploying to local Kubernetes using deployment.yaml...'
                     sh '''
+                    # First, let's check current cluster status
+                    echo "=== Kubernetes Cluster Status ==="
+                    kubectl cluster-info
+                    kubectl get nodes
+                    
+                    # Check existing deployment status
+                    echo "=== Current Deployment Status ==="
+                    kubectl get deployments -o wide || echo "No deployments found"
+                    kubectl get pods -o wide || echo "No pods found"
+                    
+                    # Apply the deployment configuration
+                    echo "=== Applying Deployment Configuration ==="
                     kubectl apply -f deployment.yaml
+                    
+                    # Update the image
+                    echo "=== Updating Container Image ==="
                     kubectl set image deployment/ml-app ml-app-container=${DOCKER_IMAGE}:${DOCKER_TAG}
-                    kubectl rollout status deployment/ml-app
+                    
+                    # Check deployment status with more detailed output
+                    echo "=== Checking Deployment Progress ==="
+                    kubectl get deployments ml-app -o wide
+                    kubectl describe deployment ml-app
+                    
+                    # Wait for rollout with extended timeout and better error handling
+                    echo "=== Waiting for Rollout (with 15-minute timeout) ==="
+                    timeout 900 kubectl rollout status deployment/ml-app --timeout=900s || {
+                        echo "❌ Deployment rollout failed or timed out. Investigating..."
+                        
+                        echo "=== Current Pod Status ==="
+                        kubectl get pods -l app=ml-app -o wide
+                        
+                        echo "=== Pod Events ==="
+                        kubectl get events --sort-by=.metadata.creationTimestamp | tail -20
+                        
+                        echo "=== Pod Logs (if any pods exist) ==="
+                        for pod in $(kubectl get pods -l app=ml-app -o jsonpath='{.items[*].metadata.name}'); do
+                            echo "--- Logs for pod: $pod ---"
+                            kubectl logs $pod --previous || kubectl logs $pod || echo "No logs available for $pod"
+                            echo "--- Describe pod: $pod ---"
+                            kubectl describe pod $pod
+                        done
+                        
+                        echo "=== Deployment Details ==="
+                        kubectl describe deployment ml-app
+                        
+                        echo "=== ReplicaSet Details ==="
+                        kubectl describe rs -l app=ml-app
+                        
+                        # Try to rollback to previous version
+                        echo "=== Attempting Rollback ==="
+                        kubectl rollout undo deployment/ml-app || echo "Rollback failed or no previous revision"
+                        
+                        exit 1
+                    }
+                    
+                    echo "=== Deployment Successful ==="
+                    kubectl get pods -l app=ml-app -o wide
+                    kubectl get services
                     '''
                 }
             }
@@ -335,8 +390,13 @@ pipeline {
                 touch coverage.xml || true
                 mkdir -p logs
                 touch logs/ml-app.log || true
+                
+                # Collect Kubernetes logs if deployment exists
+                echo "=== Collecting Kubernetes Deployment Information ==="
+                kubectl get all -l app=ml-app > logs/k8s-status.log 2>&1 || echo "Could not collect k8s status"
+                kubectl describe deployment ml-app > logs/k8s-deployment.log 2>&1 || echo "Could not describe deployment"
                 '''
-                archiveArtifacts artifacts: 'coverage.xml, **/ml-app.log', allowEmptyArchive: true
+                archiveArtifacts artifacts: 'coverage.xml, **/ml-app.log, **/k8s-*.log', allowEmptyArchive: true
             }
             cleanWs()
         }
