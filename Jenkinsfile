@@ -246,51 +246,47 @@ stage("Creating Virtual Environment") {
         }
 
        
-        stage('Initialize Vault with Docker Credentials') {
+        stage('Vault') {
             steps {
                 script {
-                    echo '🔐 Setting up Vault with Docker Hub credentials...'
-                    // We'll use the Jenkins credentials one last time to set up Vault
-                    withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'Docker123', usernameVariable: 'kunal2221')]) {
-                        sh '''
-                        # Define the path where vault will be extracted and used
-                        # Using WORKSPACE ensures it's within the current job's directory
-                        export VAULT_BIN_PATH="${WORKSPACE}/vault"
-                        
-                        # Install vault CLI if needed (locally in workspace)
-                        # Check if the local vault executable exists and is runnable
-                        if ! command -v "${VAULT_BIN_PATH}" &> /dev/null; then
-                            echo "Installing Vault CLI locally..."
-                            # Download to the workspace
-                            curl -fsSL https://releases.hashicorp.com/vault/1.15.0/vault_1.15.0_linux_amd64.zip -o "${WORKSPACE}/vault.zip"
-                            
-                            # Unzip directly into the workspace, overwrite if it already exists
-                            # The -d "${WORKSPACE}" extracts content directly into the workspace root
-                            unzip -o "${WORKSPACE}/vault.zip" -d "${WORKSPACE}"
-                            
-                            # Make the extracted vault executable
-                            chmod +x "${VAULT_BIN_PATH}" 
-                            
-                            # Clean up the zip file
-                            rm "${WORKSPACE}/vault.zip"
+                    // Safely remove existing 'vault' Docker container if it exists
+                    sh '''
+                        if docker ps -a --format '{{.Names}}' | grep -q "^vault$"; then
+                        docker rm -f vault
                         fi
-                        
-                        # Configure Vault client
-                        export VAULT_ADDR=${VAULT_ADDR}
-                        export VAULT_TOKEN=${VAULT_TOKEN}
-                        
-                        # Use the locally installed vault executable via its full path
-                        "${VAULT_BIN_PATH}" secrets enable -path=secret kv || echo "KV secrets engine already enabled"
-                        
-                        # Store Docker Hub credentials in Vault using the local vault executable
-                        "${VAULT_BIN_PATH}" kv put secret/dockerhub username=${kunal2221} password=${Docker123}
-                        
-                        echo "✅ Docker Hub credentials stored in Vault"
-                        '''
-                    }
+                    '''
+
+                    // Download macOS version of Vault
+                    sh '''
+                        mkdir -p /tmp/vault-cli
+                        curl -fsSL https://releases.hashicorp.com/vault/1.15.0/vault_1.15.0_darwin_amd64.zip -o /tmp/vault-cli/vault.zip
+                        unzip -o /tmp/vault-cli/vault.zip -d /tmp/vault-cli
+                        mv -f /tmp/vault-cli/vault ${WORKSPACE}/vault
+                        chmod +x ${WORKSPACE}/vault
+                    '''
+
+                    // Start Vault server in Docker
+                    sh '''
+                        docker run -d --name vault -p 8200:8200 --cap-add=IPC_LOCK \
+                        -e 'VAULT_DEV_ROOT_TOKEN_ID=root' \
+                        -e 'VAULT_DEV_LISTEN_ADDRESS=0.0.0.0:8200' \
+                        hashicorp/vault
+                    '''
+
+                    // Wait for Vault server to be ready
+                    sh 'sleep 5'
+
+                    // Enable KV secrets engine and store secrets
+                    sh '''
+                        export VAULT_ADDR=http://127.0.0.1:8200
+                        export VAULT_TOKEN=root
+                        ${WORKSPACE}/vault secrets enable -path=secret kv
+                        ${WORKSPACE}/vault kv put secret/mlopsproject username=kunal password=mlops
+                    '''
                 }
             }
         }
+
         stage('Push to Docker Hub using Vault Credentials') {
             steps {
                 script {
