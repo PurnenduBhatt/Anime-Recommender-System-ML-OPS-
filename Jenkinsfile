@@ -68,7 +68,7 @@ pipeline {
             }
         }
 
-stage("Creating Virtual Environment") {
+        stage("Creating Virtual Environment") {
             steps {
                 script {
                     echo 'Creating virtual environment...'
@@ -96,7 +96,7 @@ stage("Creating Virtual Environment") {
                 }
             }
         }
-        // --- NEW STAGE TO VERIFY PACKAGE VERSIONS ---
+
         stage("Verify Package Versions") {
             steps {
                 script {
@@ -113,7 +113,6 @@ stage("Creating Virtual Environment") {
                 }
             }
         }
-        // --- END NEW STAGE ---
 
         stage('Static Code Analysis') {
             steps {
@@ -245,14 +244,13 @@ stage("Creating Virtual Environment") {
             }
         }
 
-       
         stage('Vault') {
             steps {
                 script {
                     sh '''
                         # Remove existing Vault container if it exists
                         if docker ps -a --format '{{.Names}}' | grep -q "^vault$"; then
-                        docker rm -f vault
+                            docker rm -f vault
                         fi
 
                         # Download Vault CLI for macOS and set permissions
@@ -262,55 +260,59 @@ stage("Creating Virtual Environment") {
                         mv -f /tmp/vault-cli/vault ${WORKSPACE}/vault-cli
                         chmod +x ${WORKSPACE}/vault-cli
 
-                        # Start Vault server
+                        # Start Vault server in dev mode
                         docker run -d --name vault -p 8200:8200 --cap-add=IPC_LOCK \
-                        -e 'VAULT_DEV_ROOT_TOKEN_ID=root' \
-                        -e 'VAULT_DEV_LISTEN_ADDRESS=0.0.0.0:8200' \
-                        hashicorp/vault
+                            -e 'VAULT_DEV_ROOT_TOKEN_ID=root' \
+                            -e 'VAULT_DEV_LISTEN_ADDRESS=0.0.0.0:8200' \
+                            hashicorp/vault
 
                         # Wait for Vault to be ready
-                        sleep 5
+                        sleep 10
 
                         export VAULT_ADDR=http://127.0.0.1:8200
                         export VAULT_TOKEN=root
 
-                        # Only enable KV secrets engine if not already enabled
-                        if ! curl -s -H "X-Vault-Token: $VAULT_TOKEN" $VAULT_ADDR/v1/sys/mounts | grep -q '"secret/":'; then
-                        ${WORKSPACE}/vault-cli secrets enable -path=secret kv
-                        fi
+                        # Test Vault connection
+                        echo "Testing Vault connection..."
+                        ${WORKSPACE}/vault-cli status
 
-                        # Add credentials
+                        # In dev mode, the KV v2 secrets engine is already enabled at secret/
+                        # So we directly add our credentials using KV v2 syntax
+                        echo "Adding Docker Hub credentials to Vault..."
                         ${WORKSPACE}/vault-cli kv put secret/mlopsproject username=kunal2221 password=Docker123
+
+                        # Verify the secret was stored
+                        echo "Verifying stored credentials..."
+                        ${WORKSPACE}/vault-cli kv get secret/mlopsproject
                     '''
                 }
             }
         }
-       stage('Push to Docker Hub using Vault Credentials') {
-        steps {
-            script {
-                echo '🚀 Pushing Docker image using credentials from Vault...'
-                sh '''
-                # Set Vault environment using working root token
-                export VAULT_ADDR=http://localhost:8200
-                export VAULT_TOKEN=root
 
-                # Retrieve Docker Hub credentials from Vault
-                DOCKER_USERNAME=$(${WORKSPACE}/vault-cli kv get -field=username secret/mlopsproject)
-                DOCKER_PASSWORD=$(${WORKSPACE}/vault-cli kv get -field=password secret/mlopsproject)
+        stage('Push to Docker Hub using Vault Credentials') {
+            steps {
+                script {
+                    echo '🚀 Pushing Docker image using credentials from Vault...'
+                    sh '''
+                    # Set Vault environment using working root token
+                    export VAULT_ADDR=http://localhost:8200
+                    export VAULT_TOKEN=root
 
-                # Docker login
-                echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+                    # Retrieve Docker Hub credentials from Vault
+                    DOCKER_USERNAME=$(${WORKSPACE}/vault-cli kv get -field=username secret/mlopsproject)
+                    DOCKER_PASSWORD=$(${WORKSPACE}/vault-cli kv get -field=password secret/mlopsproject)
 
-                # Push Docker images
-                docker push ${DOCKER_IMAGE}:latest
-                docker push ${DOCKER_IMAGE}:${DOCKER_TAG}
-                '''
+                    # Docker login
+                    echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+
+                    # Push Docker images
+                    docker push ${DOCKER_IMAGE}:latest
+                    docker push ${DOCKER_IMAGE}:${DOCKER_TAG}
+                    '''
+                }
             }
         }
-}
 
-
-        
         stage('Deploy to Development') {
             steps {
                 script {
