@@ -280,7 +280,7 @@ stage("Creating Virtual Environment") {
                         fi
 
                         # Add credentials
-                        ${WORKSPACE}/vault-cli kv put secret/mlopsproject username=kunal password=mlops
+                        ${WORKSPACE}/vault-cli kv put secret/mlopsproject username=kunal2221 password=Docker123
                     '''
                 }
             }
