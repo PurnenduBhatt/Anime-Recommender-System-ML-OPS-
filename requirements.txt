@@ -12,3 +12,4 @@ matplotlib
 joblib
 hvac
 pyyaml
+python-json-logger
