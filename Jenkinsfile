@@ -285,29 +285,30 @@ stage("Creating Virtual Environment") {
                 }
             }
         }
-        stage('Push to Docker Hub using Vault Credentials') {
-            steps {
-                script {
-                    echo '🚀 Pushing Docker image using credentials from Vault...'
-                    sh '''
-                    # Configure Vault client
-                    export VAULT_ADDR=${VAULT_ADDR}
-                    export VAULT_TOKEN=${VAULT_TOKEN}
+       stage('Push to Docker Hub using Vault Credentials') {
+        steps {
+            script {
+                echo '🚀 Pushing Docker image using credentials from Vault...'
+                sh '''
+                # Set Vault environment using working root token
+                export VAULT_ADDR=http://localhost:8200
+                export VAULT_TOKEN=root
 
-                    # Retrieve Docker Hub credentials from Vault using the correct binary
-                    DOCKER_USERNAME=$(${WORKSPACE}/vault-cli kv get -field=username secret/dockerhub)
-                    DOCKER_PASSWORD=$(${WORKSPACE}/vault-cli kv get -field=password secret/dockerhub)
+                # Retrieve Docker Hub credentials from Vault
+                DOCKER_USERNAME=$(${WORKSPACE}/vault-cli kv get -field=username secret/mlopsproject)
+                DOCKER_PASSWORD=$(${WORKSPACE}/vault-cli kv get -field=password secret/mlopsproject)
 
-                    # Login to Docker Hub using retrieved credentials
-                    echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+                # Docker login
+                echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
 
-                    # Push Docker images
-                    docker push ${DOCKER_IMAGE}:latest
-                    docker push ${DOCKER_IMAGE}:${DOCKER_TAG}
-                    '''
-                }
+                # Push Docker images
+                docker push ${DOCKER_IMAGE}:latest
+                docker push ${DOCKER_IMAGE}:${DOCKER_TAG}
+                '''
             }
         }
+}
+
 
         
         stage('Deploy to Development') {
