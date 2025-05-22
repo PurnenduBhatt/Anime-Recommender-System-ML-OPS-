@@ -356,7 +356,7 @@ pipeline {
                         if [ ! -z "$PODS" ]; then
                             for pod in $PODS; do
                                 echo "--- Pod $pod Status ---"
-                                kubectl get pod $pod -o yaml | grep -A 5 -B 5 "phase\|containerStatuses\|conditions" || true
+                                kubectl get pod $pod -o yaml | grep -A 5 -B 5 "phase\\|containerStatuses\\|conditions" || true
                                 
                                 echo "--- Pod $pod Events ---"
                                 kubectl describe pod $pod | grep -A 20 "Events:" || echo "No events for $pod"
