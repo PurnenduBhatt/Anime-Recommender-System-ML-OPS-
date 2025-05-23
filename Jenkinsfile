@@ -262,7 +262,7 @@ pipeline {
 
                         # Start Vault server in dev mode
                         docker run -d --name vault -p 8200:8200 --cap-add=IPC_LOCK \
-                            -e 'VAULT_DEV_ROOT_TOKEN_ID=root' \
+                            -e 'VAULT_DEV_ROOT_TOKEN_ID=myroot' \
                             -e 'VAULT_DEV_LISTEN_ADDRESS=0.0.0.0:8200' \
                             hashicorp/vault
 
@@ -270,7 +270,7 @@ pipeline {
                         sleep 10
 
                         export VAULT_ADDR=http://127.0.0.1:8200
-                        export VAULT_TOKEN=root
+                        export VAULT_TOKEN=myroot
 
                         # Test Vault connection
                         echo "Testing Vault connection..."
@@ -296,7 +296,7 @@ pipeline {
                     sh '''
                     # Set Vault environment using working root token
                     export VAULT_ADDR=http://localhost:8200
-                    export VAULT_TOKEN=root
+                    export VAULT_TOKEN=myroot
 
                     # Retrieve Docker Hub credentials from Vault
                     DOCKER_USERNAME=$(${WORKSPACE}/vault-cli kv get -field=username secret/mlopsproject)

@@ -618,3 +618,50 @@ Test log entry Mon May 19 02:58:55 IST 2025
 {"asctime": "2025-05-20T21:08:16.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 21:08:16] \"POST / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
 {"asctime": "2025-05-20T21:08:16.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
 {"asctime": "2025-05-20T21:08:16.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [20/May/2025 21:08:16] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-23T06:11:08.000Z", "levelname": "INFO", "message": "Application starting", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-23T06:11:08.000Z", "levelname": "INFO", "message": "Successfully initialized Vault client", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-23T06:11:08.000Z", "levelname": "ERROR", "message": "Error fetching credentials from Vault: None, on get http://vault:8200/v1/secret/data/ml-app/elasticsearch", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-23T06:11:10.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/health", "payload": null}
+{"asctime": "2025-05-23T06:11:40.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/health", "payload": null}
+{"asctime": "2025-05-23T06:12:10.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/health", "payload": null}
+{"asctime": "2025-05-23T11:42:22.000Z", "levelname": "INFO", "message": "Application starting", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-23T11:42:22.000Z", "levelname": "INFO", "message": "Successfully initialized Vault client", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-23T11:42:22.000Z", "levelname": "ERROR", "message": "Error fetching credentials from Vault: HTTPConnectionPool(host='vault', port=8200): Max retries exceeded with url: /v1/auth/token/lookup-self (Caused by NameResolutionError(\"<urllib3.connection.HTTPConnection object at 0x127bc38e0>: Failed to resolve 'vault' ([Errno 8] nodename nor servname provided, or not known)\"))", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-23T11:42:22.000Z", "levelname": "INFO", "message": "\u001b[31m\u001b[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.\u001b[0m\n * Running on all addresses (0.0.0.0)\n * Running on http://127.0.0.1:5001\n * Running on http://192.168.0.100:5001", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-23T11:42:22.000Z", "levelname": "INFO", "message": "\u001b[33mPress CTRL+C to quit\u001b[0m", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-23T06:12:41.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/health", "payload": null}
+{"asctime": "2025-05-23T06:13:11.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/health", "payload": null}
+{"asctime": "2025-05-23T06:13:41.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/health", "payload": null}
+{"asctime": "2025-05-23T06:14:11.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/health", "payload": null}
+{"asctime": "2025-05-23T06:14:41.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/health", "payload": null}
+{"asctime": "2025-05-23T06:15:11.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/health", "payload": null}
+{"asctime": "2025-05-23T06:15:41.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/health", "payload": null}
+ime": "2025-05-23T11:45:30.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [23/May/2025 11:45:30] \"GET / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-23T11:45:30.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-23T11:45:30.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [23/May/2025 11:45:30] \"GET /static/style.css HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-23T06:16:11.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/health", "payload": null}
+{"asctime": "2025-05-23T06:16:41.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/health", "payload": null}
+{"asctime": "2025-05-23T06:17:12.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/health", "payload": null}
+{"asctime": "2025-05-23T06:17:42.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/health", "payload": null}
+{"asctime": "2025-05-23T06:18:12.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/health", "payload": null}
+{"asctime": "2025-05-23T06:18:42.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/health", "payload": null}
+ime": "2025-05-23T11:48:35.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [23/May/2025 11:48:35] \"GET / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-23T11:48:35.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-23T11:48:35.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [23/May/2025 11:48:35] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-23T06:19:12.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/health", "payload": null}
+ime": "2025-05-23T11:48:46.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [23/May/2025 11:48:46] \"GET / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-23T11:48:46.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-23T11:48:46.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [23/May/2025 11:48:46] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-23T11:48:46.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-23T11:48:46.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [23/May/2025 11:48:46] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-23T11:48:57.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-23T11:48:57.000Z", "levelname": "INFO", "message": "Recommendation request for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": "animeName=Naruto"}
+{"asctime": "2025-05-23T11:48:57.000Z", "levelname": "INFO", "message": "Generated recommendations for anime: Naruto", "remote_addr": "127.0.0.1", "method": "POST", "path": "/", "payload": null}
+{"asctime": "2025-05-23T11:48:57.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [23/May/2025 11:48:57] \"POST / HTTP/1.1\" 200 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-23T11:48:57.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/static/style.css", "payload": null}
+{"asctime": "2025-05-23T11:48:57.000Z", "levelname": "INFO", "message": "127.0.0.1 - - [23/May/2025 11:48:57] \"\u001b[36mGET /static/style.css HTTP/1.1\u001b[0m\" 304 -", "remote_addr": null, "method": null, "path": null, "payload": null}
+{"asctime": "2025-05-23T06:19:42.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/health", "payload": null}
+{"asctime": "2025-05-23T06:20:12.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/health", "payload": null}
+{"asctime": "2025-05-23T06:20:42.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/health", "payload": null}
+{"asctime": "2025-05-23T06:21:12.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/health", "payload": null}
+{"asctime": "2025-05-23T06:21:42.000Z", "levelname": "INFO", "message": "Request received", "remote_addr": "127.0.0.1", "method": "GET", "path": "/health", "payload": null}
