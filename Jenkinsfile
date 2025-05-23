@@ -236,7 +236,7 @@ pipeline {
                     # Stop and remove any pre-existing 'vault' container to prevent "Conflict" errors
                     docker rm -f vault || true
                     
-                    docker-compose down || true
+                    docker-compose down -v --remove-orphans
                     docker-compose up -d
                     sleep 30  # Wait for containers to be ready
                     '''
