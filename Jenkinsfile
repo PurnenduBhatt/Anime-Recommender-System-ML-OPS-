@@ -228,15 +228,21 @@ pipeline {
             }
         }
 
-        stage('Start ELK and Vault Stack') {
+       stage('Start ELK and Vault Stack') {
             steps {
                 script {
                     echo '📦 Starting ELK + Vault stack via Docker Compose...'
                     sh '''
-                    # Stop and remove any pre-existing 'vault' container to prevent "Conflict" errors
-                    docker rm -f vault || true
+                    # Stop and remove any existing containers that might conflict
+                    docker rm -f vault elasticsearch kibana logstash || true
                     
+                    # Stop and clean up any existing compose stack
                     docker-compose down -v --remove-orphans
+                    
+                    # Remove any dangling containers with conflicting names
+                    docker ps -a --format "{{.Names}}" | grep -E "elasticsearch|kibana|logstash" | xargs -r docker rm -f
+                    
+                    # Start the compose stack
                     docker-compose up -d
                     sleep 30  # Wait for containers to be ready
                     '''
